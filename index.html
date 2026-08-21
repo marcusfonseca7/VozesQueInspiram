@@ -4,13 +4,78 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vozes que Inspiram | SENAI Anchieta - Vila Mariana</title>
+
     <link rel="stylesheet" href="style.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <!-- ===== HEADER ===== -->
+    <div id="popupBackground" class="popup-background">
+      <div id="popupContent" class="popup-content">
+        <h2>Enviar Elogio</h2>
+
+        <img src="img/iconeX.png" alt="X" class="close-popup" onclick="closePopup()" id="x">
+
+
+        <form action="script.js" method="post">
+          <label for="name">Nome</label>
+          <input type="text" id="name" name="name" placeholder="Digite seu nome..." />
+
+          <label for="department">Setor</label>
+          <select name="department" id="department">
+            <option value="docencia">Docência</option>
+            <option value="docencia">Secretaria</option>
+            <option value="docencia">Limpeza</option>
+          </select>
+
+          <label for="person">Pessoa</label>
+          <select name="person" id="person">
+            <option value="tercio">Tércio Ribeiro</option>
+          </select>
+
+          <label for="value">Valor</label>
+          <select name="value" id="value">
+            <option value="empatia">Escolha um Valor</option>
+            <option value="empatia">Empatia</option>
+            <option value="empatia">Organização</option>
+          </select>
+
+            <h2>Avalie com Estrelas:</h2>
+            <div class="stars">
+              <input type="radio" name="star-rating" id="star1" value="1">
+              <label for="star1"> <img src="img/estrelaCinza.png" id="starOne" alt="Estrela 1"></label>
+              
+              <input type="radio" name="star-rating" id="star2" value="2">
+              <label for="star2"> <img src="img/estrelaCinza.png" id="starTwo"  alt="Estrela 2"></label>
+              
+              <input type="radio" name="star-rating" id="star3" value="3">
+              <label for="star3"> <img src="img/estrelaCinza.png" id="starThree"  alt="Estrela 3"></label>
+              
+              <input type="radio" name="star-rating" id="star4" value="4">
+              <label for="star4"> <img src="img/estrelaCinza.png" id="starFour" alt="Estrela 4"></label>
+              
+              <input type="radio" name="star-rating" id="star5" value="5">
+              <label for="star5"> <img src="img/estrelaCinza.png" id="starFive"  alt="Estrela 5"></label>
+            </div>
+
+          <h2>Escreva seu comentário:</h2>
+          <div id="editor"></div>
+
+          <button type="" class="button-send">ENVIAR</button>
+        </form>
+      </div>
+    </div>
+    <!-- ---------------------- HEADER ---------------------- -->
     <header class="header">
       <div class="header__logos">
-        <img src="img/logoSenai.jpeg" alt="Logo SENAI" class="header__logo header__logo--senai" />
+        <img
+          src="img/logoSenai.jpeg"
+          alt="Logo SENAI"
+          class="header__logo header__logo--senai"
+        />
         <span class="header__divider"></span>
         <img
           src="img/logoPertencer.png"
@@ -31,11 +96,11 @@
       </nav>
     </header>
 
-    <!-- ===== HERO ===== -->
+    <!-- ---------------------- HERO ---------------------- -->
     <section class="hero" id="home">
       <div
         class="hero__background"
-        style="background-image: url('img/senaiAnchieta.png')"
+        style="background-image: url(&quot;img/senaiAnchieta.png&quot;)"
       ></div>
       <div class="hero__overlay"></div>
 
@@ -44,20 +109,23 @@
           <h1 class="hero__title">VOZES QUE INSPIRAM</h1>
           <p class="hero__subtitle">SENAI "Anchieta" - Vila Mariana</p>
         </div>
-          
+
         <h2 class="hero__question">Você já elogiou alguém hoje?</h2>
 
-        <a href="#" class="hero__button">FAZER ELOGIO</a>
+        <a href="#" class="hero__button" id="buttonPopup">FAZER ELOGIO</a>
 
         <p class="hero__description">
           Elogie alguém que você acha que faz a diferença aqui no SENAI!
         </p>
-        <img src="img/setaBaixo.png" alt="Seta Direcionadora" class="seta-baixo">
+        <img
+          src="img/setaBaixo.png"
+          alt="Seta Direcionadora"
+          class="seta-baixo"
+        />
       </div>
-
     </section>
 
-    <!-- ===== SOBRE O PROJETO ===== -->
+    <!-- ---------------------- SOBRE O PROJETO ---------------------- -->
     <section class="sobre" id="elogios">
       <h2 class="sobre__title">Sobre o Projeto</h2>
 
@@ -86,7 +154,11 @@
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since 1966, when designers
           </p>
-          <img src="img/logoPertencer.png" alt="Logo Rede Pertencer" class="sobre-card__watermark" />
+          <img
+            src="img/logoPertencer.png"
+            alt="Logo Rede Pertencer"
+            class="sobre-card__watermark"
+          />
         </article>
 
         <article class="sobre-card">
@@ -100,14 +172,22 @@
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since 1966, when designers
           </p>
-          <img src="img/logoPertencer.png" alt="Logo Rede Pertencer" class="sobre-card__watermark" />
+          <img
+            src="img/logoPertencer.png"
+            alt="Logo Rede Pertencer"
+            class="sobre-card__watermark"
+          />
         </article>
       </div>
 
-      <img src="img/bonequinho.png" alt="Mascote Rede Pertencer" class="sobre__mascot" />
+      <img
+        src="img/bonequinho.png"
+        alt="Mascote Rede Pertencer"
+        class="sobre__mascot"
+      />
     </section>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ---------------------- FOOTER ---------------------- -->
     <footer class="footer">
       <div class="footer__background"></div>
 
@@ -135,5 +215,8 @@
         </div>
       </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

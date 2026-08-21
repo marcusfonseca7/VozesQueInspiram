@@ -1,5 +1,5 @@
 /* ===== IMPORT DE FONTES ===== */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 /* ===== RESET E VARIÁVEIS ===== */
 :root {
@@ -51,7 +51,7 @@ ul {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 4;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -141,8 +141,8 @@ ul {
   width: 100%;
   text-align: center;
   padding: 140px 24px 80px;
-    align-content: center;
-    min-height: 100vh;
+  align-content: center;
+  min-height: 100vh;
 }
 
 .hero__container-title {
@@ -161,7 +161,7 @@ ul {
   font-size: 4rem;
   letter-spacing: 1px;
   margin-bottom: -10px;
-  background-image: linear-gradient(90deg, #016EFD, #2BFD01, #01FDE0);
+  background-image: linear-gradient(90deg, #016efd, #2bfd01, #01fde0);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -199,7 +199,7 @@ ul {
   font-size: 1.4rem;
   color: var(--color-white);
   letter-spacing: 0.5px;
-  background-image: linear-gradient(to right, orange, green);
+  background-image: linear-gradient(to right, #fda501, #25df00, #00ce7f);
   padding: 15px 125px;
   border-radius: 8px;
   box-shadow: 0 8px 0 #7a1f0d;
@@ -236,7 +236,6 @@ ul {
   filter: invert(100%);
 }
 
-
 /* ===== SOBRE O PROJETO ===== */
 .sobre {
   position: relative;
@@ -249,7 +248,12 @@ ul {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 2.6rem;
-  background-image: linear-gradient(90deg, #FF0000 0%, #FF8000 50%, #B8C500 100%);
+  background-image: linear-gradient(
+    90deg,
+    #ff0000 0%,
+    #ff8000 50%,
+    #b8c500 100%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -331,11 +335,7 @@ ul {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(
-    100deg,
-     
-    #f7e1c8 100%
-  );
+  background: linear-gradient(100deg, #f7e1c8 100%);
 }
 
 .footer__content {
@@ -443,4 +443,137 @@ ul {
     flex-direction: column;
     text-align: center;
   }
+}
+
+/* ---------------------- POPUP ---------------------- */
+
+.popup-background {
+  display: none;
+}
+
+.popup-background.opened {
+  display: flex;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: all;
+  user-select: text;
+}
+
+body.opened {
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+
+.popup-content.opened {
+  position: fixed;
+  z-index: 11;
+  width: 40%;
+  height: fit-content;
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  align-self: center;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 15px;
+  padding: 10px 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 2px;
+  width: 100%;
+}
+
+#editor {
+  height: 200px;
+}
+
+label {
+ font-weight: 500; 
+}
+
+input,
+select {
+  padding: 5px;
+  border: 1px rgb(201, 201, 201) solid;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+}
+
+.popup-content h2 {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.button-send {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--color-white);
+  letter-spacing: 0.5px;
+  background-image: linear-gradient(to right, #ff4718, #e2bf25, #00ce7f);
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0 8px 0 #8f4000;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+  margin-top: 32px;
+  width: 70%;
+  border: none;
+  align-self: center;
+}
+
+.button-send:hover {
+  transform: translateY(2px);
+  box-shadow: 0 6px 0 #7a1f0d;
+}
+
+.button-send:active {
+  transform: translateY(4px);
+  box-shadow: 0 4px 0 #7a1f0d;
+  outline: none;
+}
+
+.stars {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  align-self: center;
+  padding: 10px;
+}
+
+.stars img {
+  width: 30px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.close-popup {
+  width: 30px;
+  position: absolute;
+  top: 22px;
+  right: 20px;
+  cursor: pointer;
 }
