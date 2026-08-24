@@ -449,59 +449,183 @@ body.opened {
   left: 50%;
   transform: translateX(-50%);
   border-radius: 15px;
-  padding: 10px 30px;
+  padding: 20px 30px;
+}
+
+.close-popup {
+  width: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.popup__title {
+  font-size: 1.2rem;
+  align-self: start;
+  font-weight: 600;
+}
+
+.popup-content h3 {
+  align-self: start;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.container__message {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  height: fit-content;
+  padding: 15px;
+  background-color: #ffd0aa56;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.message__heart {
+  width: 13%;
+  border-right: #6f3d0041 1px solid;
+  padding-right: 10px;
+}
+
+.message__heart img {
+  width: 100%;
+}
+
+.message {
+  width: 85%;
+  padding: 0px 7px;
+}
+
+.message__principal {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgb(124, 81, 0);
+}
+.message__sub {
+  font-size: 0.8rem;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 0;
   gap: 2px;
   width: 100%;
 }
 
-#editor {
-  height: 200px;
+select,
+input,
+textarea {
+  border: 1px rgb(223, 223, 223) solid;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
 }
 
 label {
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding-left: 5px;
 }
 
-input,
-select {
-  padding: 5px;
-  border: 1px rgb(201, 201, 201) solid;
+.input__name {
+  padding: 8px;
   border-radius: 5px;
   margin-bottom: 10px;
-  font-family: "Montserrat", sans-serif;
   font-weight: 400;
+  background-image: url("img/nomeIcon.png");
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  background-size: 13px;
+  padding-left: 40px;
 }
 
-.popup-content h2 {
+.container__selects {
+  display: flex;
+  justify-content: space-between;
+}
+
+.department__select,
+.person__select {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+.department__select select,
+.person__select select,
+#value {
+  padding: 8px 5px;
+  border-radius: 6px;
+}
+
+.stars__question {
+  font-size: 0.8rem;
   text-align: center;
   margin-top: 10px;
-  font-weight: 500;
+  font-weight: 600;
+  align-self: center;
+}
+
+.stars {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  align-self: center;
+  padding: 10px;
+}
+
+.stars img {
+  width: 28px;
+  margin: 0 7px;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.textarea_title {
+  font-size: 0.8rem;
+  margin: 5px;
+  font-weight: 600;
+}
+
+#compliment {
+  height: 70px;
+  border-radius: 5px;
+  border: 1px solid rgb(223, 223, 223);
+  padding: 5px 10px;
 }
 
 .button-send {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.4rem;
+  font-weight: 500;
+  font-size: 1rem;
   color: var(--color-white);
   letter-spacing: 0.5px;
-  background-image: linear-gradient(to right, #ff4718, #e2bf25, #00ce7f);
-  padding: 5px;
+  background-image: linear-gradient(to right, #ff4112, #e27a25, #e2bf25);
+  padding: 10px 5px;
   border-radius: 8px;
-  box-shadow: 0 8px 0 #8f4000;
+  box-shadow: 0 5px 0 #8f4000;
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;
-  margin-top: 32px;
-  width: 70%;
+  margin-top: 5px;
+  width: 100%;
   border: none;
-  align-self: center;
+  align-items: center;
+}
+
+.button-send img {
+  display: inline;
+  width: 25px;
 }
 
 .button-send:hover {
@@ -515,73 +639,18 @@ select {
   outline: none;
 }
 
-.stars {
-  display: flex;
-  flex-direction: row;
-  justify-self: center;
-  align-self: center;
-  padding: 10px;
-}
-
-.stars img {
-  width: 30px;
-  margin: 0 10px;
-  cursor: pointer;
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-.close-popup {
-  width: 30px;
-  position: absolute;
-  top: 22px;
-  right: 20px;
-  cursor: pointer;
-}
-
 /* ===== RESPONSIVO ===== */
 
 @media (max-width: 1440px) {
   /* POPUP */
   .popup-content.opened {
-    width: 40%;
-    height: min-content;
-    background: rgb(255, 255, 255);
-  }
-
-  .sobre__mascot {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    width: 250px;
-    height: auto;
+    height: max-content;
   }
 
   form {
-    padding: 10px;
+    padding: 10px 0;
     gap: 0px;
     width: 100%;
-  }
-
-  #editor {
-    height: 100px;
-  }
-
-  .popup-content h3 {
-    font-size: 1rem;
-    font-weight: 300;
-  }
-
-  input,
-  select {
-    padding: 5px;
-    border: 1px rgb(201, 201, 201) solid;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
   }
 
   /* HERO */
@@ -596,6 +665,16 @@ input[type="radio"] {
 
   .header__nav-list {
     padding-right: 0px;
+  }
+
+  /* SOBRE */
+
+  .sobre__mascot {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 250px;
+    height: auto;
   }
 
   /* FOOTER */

@@ -7,35 +7,58 @@
 
     <link rel="stylesheet" href="style.css" />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" />
   </head>
   <body>
     <div id="popupBackground" class="popup-background">
       <div id="popupContent" class="popup-content">
-        <h2>Enviar um Elogio</h2>
+        <h2 class="popup__title">Enviar um Elogio</h2>
         <h3>Reconheça alguém que faz a diferença.</h3>
 
-        <img src="img/iconeX.png" alt="X" class="close-popup" onclick="closePopup()" id="x">
+        <img
+          src="img/iconeX.png"
+          alt="X"
+          class="close-popup"
+          onclick="closePopup()"
+          id="x"
+        />
 
+        <div class="container__message">
+          <div class="message__heart">
+            <img src="/img/simboloPertencer.png" alt="Coração">
+          </div>
+          <div class="message">
+            <p class="message__principal">Um pequeno elogio pode gerar um enorme impacto!</p>
+            <p class="message__sub">Ele pode inspirar e motivar alguem.</p>
+          </div>
+        </div>
 
         <form action="script.js" method="post">
-          <label for="name">Nome</label>
-          <input type="text" id="name" name="name" placeholder="Digite seu nome..." />
+          <label for="name" class="label__name">Nome</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Digite seu nome..."
+            class="input__name"
+          />
 
-          <label for="department">Setor</label>
-          <select name="department" id="department">
-            <option value="docencia">Docência</option>
-            <option value="docencia">Secretaria</option>
-            <option value="docencia">Limpeza</option>
-          </select>
-
-          <label for="person">Pessoa</label>
-          <select name="person" id="person">
-            <option value="tercio">Tércio Ribeiro</option>
-          </select>
+          <div class="container__selects">
+            <div class="department__select">
+              <label for="department">Setor</label>
+              <select name="department" id="department">
+                <option value="docencia">Docência</option>
+                <option value="docencia">Secretaria</option>
+                <option value="docencia">Limpeza</option>
+              </select>
+            </div>
+            <div class="person__select">
+              <label for="person">Pessoa</label>
+              <select name="person" id="person">
+                <option value="tercio">Tércio Ribeiro</option>
+              </select>
+            </div>
+          </div>
 
           <label for="value">Valor</label>
           <select name="value" id="value">
@@ -44,28 +67,42 @@
             <option value="empatia">Organização</option>
           </select>
 
-            <h2>Avalie com Estrelas:</h2>
-            <div class="stars">
-              <input type="radio" name="star-rating" id="star1" value="1">
-              <label for="star1"> <img src="img/estrelaVazia.png" id="starOne" alt="Estrela 1"></label>
-              
-              <input type="radio" name="star-rating" id="star2" value="2">
-              <label for="star2"> <img src="img/estrelaVazia.png" id="starTwo"  alt="Estrela 2"></label>
-              
-              <input type="radio" name="star-rating" id="star3" value="3">
-              <label for="star3"> <img src="img/estrelaVazia.png" id="starThree"  alt="Estrela 3"></label>
-              
-              <input type="radio" name="star-rating" id="star4" value="4">
-              <label for="star4"> <img src="img/estrelaVazia.png" id="starFour" alt="Estrela 4"></label>
-              
-              <input type="radio" name="star-rating" id="star5" value="5">
-              <label for="star5"> <img src="img/estrelaVazia.png" id="starFive"  alt="Estrela 5"></label>
-            </div>
+          <h2 class="stars__question">Como você avalia essa pessoa?</h2>
+          <div class="stars">
+            <input type="radio" name="star-rating" id="star1" value="1" />
+            <label for="star1">
+              <img src="img/estrelaVazia.png" id="starOne" alt="Estrela 1"
+            /></label>
 
-          <h2>Escreva seu comentário:</h2>
-          <div id="editor"></div>
+            <input type="radio" name="star-rating" id="star2" value="2" />
+            <label for="star2">
+              <img src="img/estrelaVazia.png" id="starTwo" alt="Estrela 2"
+            /></label>
 
-          <button type="" class="button-send">ENVIAR</button>
+            <input type="radio" name="star-rating" id="star3" value="3" />
+            <label for="star3">
+              <img src="img/estrelaVazia.png" id="starThree" alt="Estrela 3"
+            /></label>
+
+            <input type="radio" name="star-rating" id="star4" value="4" />
+            <label for="star4">
+              <img src="img/estrelaVazia.png" id="starFour" alt="Estrela 4"
+            /></label>
+
+            <input type="radio" name="star-rating" id="star5" value="5" />
+            <label for="star5">
+              <img src="img/estrelaVazia.png" id="starFive" alt="Estrela 5"
+            /></label>
+          </div>
+
+          <h2 class="textarea_title">Seu elogio:</h2>
+          <textarea
+            name="compliment"
+            id="compliment"
+            placeholder="Escreva seu comentário aqui..."
+          ></textarea>
+
+          <button type="" class="button-send"> <img src="img/aviaozinho.png" alt="Coração"> ENVIAR ELOGIO</button>
         </form>
       </div>
     </div>
@@ -218,7 +255,6 @@
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

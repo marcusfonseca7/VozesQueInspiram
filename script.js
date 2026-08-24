@@ -25,9 +25,7 @@ function cleanStars() {
   starFive.src = "img/estrelaVazia.png";
 }
 
-divStars.addEventListener("mouseout", () => {
-  cleanStars()
-})
+
 
 // Selecionar Estrelas ------ REFATORAR
 starOne.addEventListener("mouseover", () => {
@@ -66,17 +64,21 @@ starFour.addEventListener("mouseover", () => {
   starFive.src = "img/estrelaVazia.png";
 });
 
+starFour.addEventListener("click", () => {
+  starOne.src = "img/estrelaAmarela.png";
+  starTwo.src = "img/estrelaAmarela.png";
+  starThree.src = "img/estrelaAmarela.png";
+  starFour.src = "img/estrelaAmarela.png";
+
+  starFive.src = "img/estrelaVazia.png";
+})
+
 starFive.addEventListener("mouseover", () => {
   starOne.src = "img/estrelaAmarela.png";
   starTwo.src = "img/estrelaAmarela.png";
   starThree.src = "img/estrelaAmarela.png";
   starFour.src = "img/estrelaAmarela.png";
   starFive.src = "img/estrelaAmarela.png";
-});
-
-const quill = new Quill("#editor", {
-  theme: "snow",
-  placeholder: "Digite seu texto aqui...",
 });
 
 buttonPopup.addEventListener("click", () => {
