@@ -18,11 +18,11 @@ function closePopup() {
 }
 
 function cleanStars() {
-  starOne.src = "img/estrelaCinza.png";
-  starTwo.src = "img/estrelaCinza.png";
-  starThree.src = "img/estrelaCinza.png";
-  starFour.src = "img/estrelaCinza.png";
-  starFive.src = "img/estrelaCinza.png";
+  starOne.src = "img/estrelaVazia.png";
+  starTwo.src = "img/estrelaVazia.png";
+  starThree.src = "img/estrelaVazia.png";
+  starFour.src = "img/estrelaVazia.png";
+  starFive.src = "img/estrelaVazia.png";
 }
 
 divStars.addEventListener("mouseout", () => {
@@ -33,19 +33,19 @@ divStars.addEventListener("mouseout", () => {
 starOne.addEventListener("mouseover", () => {
   starOne.src = "img/estrelaAmarela.png";
 
-  starTwo.src = "img/estrelaCinza.png";
-  starThree.src = "img/estrelaCinza.png";
-  starFour.src = "img/estrelaCinza.png";
-  starFive.src = "img/estrelaCinza.png";
+  starTwo.src = "img/estrelaVazia.png";
+  starThree.src = "img/estrelaVazia.png";
+  starFour.src = "img/estrelaVazia.png";
+  starFive.src = "img/estrelaVazia.png";
 });
 
 starTwo.addEventListener("mouseover", () => {
   starOne.src = "img/estrelaAmarela.png";
   starTwo.src = "img/estrelaAmarela.png";
 
-  starThree.src = "img/estrelaCinza.png";
-  starFour.src = "img/estrelaCinza.png";
-  starFive.src = "img/estrelaCinza.png";
+  starThree.src = "img/estrelaVazia.png";
+  starFour.src = "img/estrelaVazia.png";
+  starFive.src = "img/estrelaVazia.png";
 });
 
 starThree.addEventListener("mouseover", () => {
@@ -53,8 +53,8 @@ starThree.addEventListener("mouseover", () => {
   starTwo.src = "img/estrelaAmarela.png";
   starThree.src = "img/estrelaAmarela.png";
 
-  starFour.src = "img/estrelaCinza.png";
-  starFive.src = "img/estrelaCinza.png";
+  starFour.src = "img/estrelaVazia.png";
+  starFive.src = "img/estrelaVazia.png";
 });
 
 starFour.addEventListener("mouseover", () => {
@@ -63,7 +63,7 @@ starFour.addEventListener("mouseover", () => {
   starThree.src = "img/estrelaAmarela.png";
   starFour.src = "img/estrelaAmarela.png";
 
-  starFive.src = "img/estrelaCinza.png";
+  starFive.src = "img/estrelaVazia.png";
 });
 
 starFive.addEventListener("mouseover", () => {
