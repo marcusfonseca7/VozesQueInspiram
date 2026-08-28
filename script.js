@@ -3,13 +3,6 @@ buttonPopup = document.getElementById("buttonPopup");
 popupContent = document.getElementById("popupContent");
 body = document.body;
 x = document.getElementById("x");
-divStars = document.querySelector(".stars")
-
-star1 = document.getElementById("starOne");
-star2 = document.getElementById("starTwo");
-star3 = document.getElementById("starThree");
-star4 = document.getElementById("starFour");
-star5 = document.getElementById("starFive");
 
 function closePopup() {
   popupBackground.classList.remove("opened");
@@ -17,68 +10,45 @@ function closePopup() {
   body.classList.remove("opened");
 }
 
-function cleanStars() {
-  starOne.src = "img/estrelaVazia.png";
-  starTwo.src = "img/estrelaVazia.png";
-  starThree.src = "img/estrelaVazia.png";
-  starFour.src = "img/estrelaVazia.png";
-  starFive.src = "img/estrelaVazia.png";
+const divStars = document.querySelector(".stars");
+
+const radios = divStars.querySelectorAll('input[type="radio"]');
+const labels = divStars.querySelectorAll("label");
+const stars = divStars.querySelectorAll("img");
+
+const emptyStar = "img/estrelaVazia.png";
+const fullStar = "img/estrelaAmarela.png";
+
+let selectedRating = 0;
+
+// Pinta as estrelas de acordo com a nota
+function paintStars(rating) {
+  stars.forEach((star, index) => {
+    star.src = index < rating ? fullStar : emptyStar;
+  });
 }
 
-
-
-// Selecionar Estrelas ------ REFATORAR
-starOne.addEventListener("mouseover", () => {
-  starOne.src = "img/estrelaAmarela.png";
-
-  starTwo.src = "img/estrelaVazia.png";
-  starThree.src = "img/estrelaVazia.png";
-  starFour.src = "img/estrelaVazia.png";
-  starFive.src = "img/estrelaVazia.png";
+// Hover das estrelas
+labels.forEach((label, index) => {
+  label.addEventListener("mouseenter", () => {
+    paintStars(index + 1);
+  });
 });
 
-starTwo.addEventListener("mouseover", () => {
-  starOne.src = "img/estrelaAmarela.png";
-  starTwo.src = "img/estrelaAmarela.png";
+// Seleção da avaliação
+radios.forEach((radio) =>  {
+  radio.addEventListener("change", () => {
+    selectedRating = Number(radio.value);
+    
 
-  starThree.src = "img/estrelaVazia.png";
-  starFour.src = "img/estrelaVazia.png";
-  starFive.src = "img/estrelaVazia.png";
+    console.log("Avaliação selecionada:", selectedRating);
+  });
 });
 
-starThree.addEventListener("mouseover", () => {
-  starOne.src = "img/estrelaAmarela.png";
-  starTwo.src = "img/estrelaAmarela.png";
-  starThree.src = "img/estrelaAmarela.png";
 
-  starFour.src = "img/estrelaVazia.png";
-  starFive.src = "img/estrelaVazia.png";
-});
-
-starFour.addEventListener("mouseover", () => {
-  starOne.src = "img/estrelaAmarela.png";
-  starTwo.src = "img/estrelaAmarela.png";
-  starThree.src = "img/estrelaAmarela.png";
-  starFour.src = "img/estrelaAmarela.png";
-
-  starFive.src = "img/estrelaVazia.png";
-});
-
-starFour.addEventListener("click", () => {
-  starOne.src = "img/estrelaAmarela.png";
-  starTwo.src = "img/estrelaAmarela.png";
-  starThree.src = "img/estrelaAmarela.png";
-  starFour.src = "img/estrelaAmarela.png";
-
-  starFive.src = "img/estrelaVazia.png";
-})
-
-starFive.addEventListener("mouseover", () => {
-  starOne.src = "img/estrelaAmarela.png";
-  starTwo.src = "img/estrelaAmarela.png";
-  starThree.src = "img/estrelaAmarela.png";
-  starFour.src = "img/estrelaAmarela.png";
-  starFive.src = "img/estrelaAmarela.png";
+// Quando o mouse sair da área das estrelas
+divStars.addEventListener("mouseleave", () => {
+  paintStars(selectedRating);
 });
 
 buttonPopup.addEventListener("click", () => {
@@ -87,5 +57,10 @@ buttonPopup.addEventListener("click", () => {
   body.classList.add("opened");
 });
 
-//pegar texto formatado em html na hora de salvar o formulario
-// const htmlDoTexto = quill.getSemanticHTML();
+
+
+listaDocencia = ["Tércio Ribeiro", "Ricardo Orrico", "Lucas Felfoldi"]
+listaSecretaria = ["Elida", "Denise", "Felipe"]
+listaLimpeza = ["Tia 1", "Tia 2", "Tia 3"]
+
+addEventListener
