@@ -1,8 +1,8 @@
-popupBackground = document.getElementById("popupBackground");
-buttonPopup = document.getElementById("buttonPopup");
-popupContent = document.getElementById("popupContent");
-body = document.body;
-x = document.getElementById("x");
+const popupBackground = document.getElementById("popupBackground");
+const buttonPopup = document.getElementById("buttonPopup");
+const popupContent = document.getElementById("popupContent");
+const body = document.body;
+const x = document.getElementById("x");
 
 function closePopup() {
   popupBackground.classList.remove("opened");
@@ -46,7 +46,7 @@ radios.forEach((radio) =>  {
 });
 
 
-// Quando o mouse sair da área das estrelas
+// Quando o mouse sair das estrelas
 divStars.addEventListener("mouseleave", () => {
   paintStars(selectedRating);
 });
@@ -58,9 +58,79 @@ buttonPopup.addEventListener("click", () => {
 });
 
 
+// - - - - - - - - - - - - - FIREBASE - - - - - - - - - - - - -
 
-listaDocencia = ["Tércio Ribeiro", "Ricardo Orrico", "Lucas Felfoldi"]
-listaSecretaria = ["Elida", "Denise", "Felipe"]
-listaLimpeza = ["Tia 1", "Tia 2", "Tia 3"]
+import { db } from "./firebase.js";
 
-addEventListener
+import {
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+// Formulário
+const complimentForm = document.getElementById("complimentForm");
+
+complimentForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const nome = document.getElementById("name").value.trim();
+  const setor = document.getElementById("department").value;
+  const pessoa = document.getElementById("person").value;
+  const valor = document.getElementById("value").value;
+  const elogio = document.getElementById("compliment").value.trim();
+
+  if (selectedRating === 0) {
+    alert("Selecione uma avaliação de 1 a 5 estrelas.");
+    return;
+  }
+
+  // Validações básicas
+  if (nome === "") {
+    alert("Digite seu nome.");
+    return;
+  }
+
+  if (setor === "") {
+    alert("Selecione um setor.");
+    return;
+  }
+
+  if (valor === "") {
+    alert("Selecione um valor.");
+    return;
+  }
+
+  if (elogio === "") {
+    alert("Escreva seu elogio.");
+    return;
+  }
+
+  try {
+    // Envio do elogio para o Firebase
+    await addDoc(collection(db, "elogios"), {
+      nome: nome,
+      setor: setor,
+      pessoa: pessoa,
+      valor: valor,
+      estrelas: selectedRating,
+      elogio: elogio,
+      data: serverTimestamp()
+    });
+
+    console.log("Elogio enviado com sucesso!");
+
+    alert("Elogio enviado com sucesso! ❤️");
+
+    // Limpa o formulário
+    complimentForm.reset();
+    selectedRating = 0;
+    paintStars(0);
+
+  } catch (error) {
+    console.error("Erro ao enviar elogio:", error);
+
+    alert("Não foi possível enviar o elogio. Tente novamente.");
+  }
+});

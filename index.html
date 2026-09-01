@@ -35,7 +35,7 @@
           </div>
         </div>
 
-        <form action="script.js" method="post">
+        <form id="complimentForm">
           <label for="name" class="label__name">Nome</label>
           <input
             type="text"
@@ -50,8 +50,8 @@
               <label for="department">Setor</label>
               <select name="department" id="department">
                 <option value="docencia">Docência</option>
-                <option value="docencia">Secretaria</option>
-                <option value="docencia">Limpeza</option>
+                <option value="secretaria">Secretaria</option>
+                <option value="limpeza">Limpeza</option>
               </select>
             </div>
             <div class="person__select">
@@ -104,7 +104,7 @@
             placeholder="Escreva seu comentário aqui..."
           ></textarea>
 
-          <button type="" class="button-send">
+          <button type="submit" class="button-send">
             <img src="img/aviaozinho.png" alt="Coração" /> ENVIAR ELOGIO
           </button>
         </form>
@@ -266,6 +266,6 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
