@@ -15,13 +15,7 @@
         <h2 class="popup__title">Enviar um Elogio</h2>
         <h3>Reconheça alguém que faz a diferença.</h3>
 
-        <img
-          src="img/iconeX.png"
-          alt="X"
-          class="close-popup"
-          onclick="closePopup()"
-          id="x"
-        />
+        <img src="img/iconeX.png" alt="X" class="close-popup" id="x" />
 
         <div class="container__message">
           <div class="message__heart">
@@ -48,25 +42,25 @@
           <div class="container__selects">
             <div class="department__select">
               <label for="department">Setor</label>
+
               <select name="department" id="department">
-                <option value="docencia">Docência</option>
-                <option value="secretaria">Secretaria</option>
-                <option value="limpeza">Limpeza</option>
+                <option value="">Escolha um Setor</option>
               </select>
             </div>
+            
             <div class="person__select">
               <label for="person">Pessoa</label>
               <select name="person" id="person">
-                <option value="tercio">Tércio Ribeiro</option>
+                <option value="">Selecione uma pessoa</option>
               </select>
             </div>
           </div>
 
           <label for="value">Valor</label>
           <select name="value" id="value">
-            <option value="empatia">Escolha um Valor</option>
+            <option value="">Escolha um Valor</option>
             <option value="empatia">Empatia</option>
-            <option value="empatia">Organização</option>
+            <option value="organizacao">Organização</option>
           </select>
 
           <h2 class="stars__question">Como você avalia essa pessoa?</h2>

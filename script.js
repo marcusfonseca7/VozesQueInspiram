@@ -4,11 +4,11 @@ const popupContent = document.getElementById("popupContent");
 const body = document.body;
 const x = document.getElementById("x");
 
-function closePopup() {
+x.addEventListener("click", () => {
   popupBackground.classList.remove("opened");
   popupContent.classList.remove("opened");
   body.classList.remove("opened");
-}
+});
 
 const divStars = document.querySelector(".stars");
 
@@ -36,15 +36,13 @@ labels.forEach((label, index) => {
 });
 
 // Seleção da avaliação
-radios.forEach((radio) =>  {
+radios.forEach((radio) => {
   radio.addEventListener("change", () => {
     selectedRating = Number(radio.value);
-    
 
     console.log("Avaliação selecionada:", selectedRating);
   });
 });
-
 
 // Quando o mouse sair das estrelas
 divStars.addEventListener("mouseleave", () => {
@@ -57,7 +55,6 @@ buttonPopup.addEventListener("click", () => {
   body.classList.add("opened");
 });
 
-
 // - - - - - - - - - - - - - FIREBASE - - - - - - - - - - - - -
 
 import { db } from "./firebase.js";
@@ -65,9 +62,9 @@ import { db } from "./firebase.js";
 import {
   collection,
   addDoc,
-  serverTimestamp
+  serverTimestamp,
+  getDocs,
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-
 
 // Formulário
 const complimentForm = document.getElementById("complimentForm");
@@ -116,7 +113,7 @@ complimentForm.addEventListener("submit", async (event) => {
       valor: valor,
       estrelas: selectedRating,
       elogio: elogio,
-      data: serverTimestamp()
+      data: serverTimestamp(),
     });
 
     console.log("Elogio enviado com sucesso!");
@@ -127,10 +124,105 @@ complimentForm.addEventListener("submit", async (event) => {
     complimentForm.reset();
     selectedRating = 0;
     paintStars(0);
-
   } catch (error) {
     console.error("Erro ao enviar elogio:", error);
 
     alert("Não foi possível enviar o elogio. Tente novamente.");
   }
+});
+
+// - - - - - - - - - - Carregar Selects Dinamicamente - - - - - -
+
+async function carregarSetores() {
+  const departmentSelect = document.getElementById("department");
+
+  try {
+    const pessoasRef = collection(db, "pessoas");
+    const snapshot = await getDocs(pessoasRef);
+
+    const setores = new Set();
+
+    snapshot.forEach((doc) => {
+      const pessoa = doc.data();
+
+      if (pessoa.setor) {
+        setores.add(pessoa.setor);
+      }
+    });
+
+    // Setores que não possuem pessoas 
+    setores.add("Cantina");
+    setores.add("Segurança");
+    setores.add("Limpeza e Serviços Gerais");
+
+    // Cria as opções
+    setores.forEach((setor) => {
+      const option = document.createElement("option");
+
+      option.value = setor;
+      option.textContent = setor;
+
+      departmentSelect.appendChild(option);
+    });
+  } catch (error) {
+    console.error("Erro ao carregar setores:", error);
+  }
+}
+
+carregarSetores();
+
+// carrega pessoas
+
+async function carregarPessoas(setorSelecionado) {
+  const personSelect = document.getElementById("person");
+
+  personSelect.innerHTML = '<option value="">Selecione uma pessoa</option>';
+
+  if (!setorSelecionado) {
+    return;
+  }
+
+  // Setores que não possuem pessoas individuais
+  const setoresEspeciais = {
+    "Cantina": "Equipe da Cantina",
+    "Segurança": "Equipe de Segurança",
+    "Limpeza e Serviços Gerais": "Equipe de Limpeza e Serviços Gerais"
+  };
+
+  if (setoresEspeciais[setorSelecionado]) {
+
+    const option = document.createElement("option");
+
+    option.value = setoresEspeciais[setorSelecionado];
+    option.textContent = setoresEspeciais[setorSelecionado];
+
+    personSelect.appendChild(option);
+
+    return;
+  }
+
+  try {
+    const pessoasRef = collection(db, "pessoas");
+    const snapshot = await getDocs(pessoasRef);
+
+    snapshot.forEach((doc) => {
+      const pessoa = doc.data();
+
+      if (pessoa.setor === setorSelecionado) {
+        const option = document.createElement("option");
+
+        option.value = pessoa.nome;
+        option.textContent = pessoa.nome;
+
+        personSelect.appendChild(option);
+      }
+    });
+  } catch (error) {
+    console.error("Erro ao carregar pessoas:", error);
+  }
+}
+
+// Quando o setor for alterado
+document.getElementById("department").addEventListener("change", (event) => {
+  carregarPessoas(event.target.value);
 });
