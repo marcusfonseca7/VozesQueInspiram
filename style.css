@@ -334,30 +334,27 @@ ul {
 .sobre__pertencer a {
   position: relative;
   font-size: 1.2rem;
-  
 }
 
 .sobre__pertencer a::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: rgb(233, 2, 2);
-    transition: width 0.3s ease;
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: rgb(233, 2, 2);
+  transition: width 0.3s ease;
 }
 
 .sobre__pertencer a:hover::after {
-    width: 100%;
+  width: 100%;
 }
 
 .sobre__pertencer img {
   width: 15px;
   display: inline;
 }
-
-
 
 .sobre__mascot {
   position: absolute;
@@ -593,9 +590,14 @@ label {
 
 .department__select select,
 .person__select select,
-#value {
+#value,
+.value__select select {
   padding: 8px 5px;
   border-radius: 6px;
+}
+
+.value__select select {
+  width: 100%;
 }
 
 .stars__question {

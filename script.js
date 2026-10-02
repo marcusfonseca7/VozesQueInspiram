@@ -150,7 +150,7 @@ async function carregarSetores() {
       }
     });
 
-    // Setores que não possuem pessoas 
+    // Setores que não possuem pessoas
     setores.add("Cantina");
     setores.add("Segurança");
     setores.add("Limpeza e Serviços Gerais");
@@ -184,13 +184,12 @@ async function carregarPessoas(setorSelecionado) {
 
   // Setores que não possuem pessoas individuais
   const setoresEspeciais = {
-    "Cantina": "Equipe da Cantina",
-    "Segurança": "Equipe de Segurança",
-    "Limpeza e Serviços Gerais": "Equipe de Limpeza e Serviços Gerais"
+    Cantina: "Equipe da Cantina",
+    Segurança: "Equipe de Segurança",
+    "Limpeza e Serviços Gerais": "Equipe de Limpeza e Serviços Gerais",
   };
 
   if (setoresEspeciais[setorSelecionado]) {
-
     const option = document.createElement("option");
 
     option.value = setoresEspeciais[setorSelecionado];
@@ -225,4 +224,51 @@ async function carregarPessoas(setorSelecionado) {
 // Quando o setor for alterado
 document.getElementById("department").addEventListener("change", (event) => {
   carregarPessoas(event.target.value);
+});
+
+// - - - - - - - - - - Colocar Valores no Select - - - - - -
+
+const selectValues = document.getElementById("values");
+const listValues = [
+  "01 - Adaptabilidade a normas e regras e ética",
+  "02 - Alfabetização digital",
+  "03 - Análise e solução de problemas",
+  "04 - Comunicação Interpessoal/não violenta",
+  "05 - Empatia/escuta ativa",
+  "06 - Engajamento",
+  "07 - Flexibilidade",
+  "08 - Foco no resultado",
+  "09 - Gestão de recursos",
+  "10 - Gestão de relacionamento",
+  "11 - Inovação/intraempreendedorismo",
+  "12 - Inteligência emocional",
+  "13 - Liderança",
+  "14 - Negociação",
+  "15 - Pensamento estratégico",
+  "16 - Pensamento lean",
+  "17 - Planejamento/Organização",
+  "18 - Bem estar, saúde e segurança.",
+  "19 - Compliance e ética.",
+  "20 - Execução de aulas.",
+  "21 - Execução de eventos.",
+  "22 - Execução de serviços.",
+  "23 - Execução nos processos.",
+  "24 - Feedbacks de clientes internos / externos.",
+  "25 - Liderança de pessoas.",
+  "26 - Liderança de projetos e ou processos.",
+  "27 - Melhorias de processo.",
+  "28 - Novos produtos.",
+  "29 - Planejamento e execução de projetos.",
+  "30 - Representação institucional.",
+  "31 - Reuniões / apresentações.",
+  "32 - Venda de serviços e novos negócios.",
+  "33 - Feedback Líder",
+];
+
+listValues.forEach((value) => {
+  const option = document.createElement("option");
+
+  option.value = `${value}`;
+  option.textContent = `${value}`
+  selectValues.appendChild(option);
 });
