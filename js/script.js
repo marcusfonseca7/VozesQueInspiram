@@ -57,7 +57,7 @@ buttonPopup.addEventListener("click", () => {
 
 // - - - - - - - - - - - - - FIREBASE - - - - - - - - - - - - -
 
-import { db } from "./firebase.js";
+import { db } from "./firebase/firebase.js";
 
 import {
   collection,
@@ -269,6 +269,6 @@ listValues.forEach((value) => {
   const option = document.createElement("option");
 
   option.value = `${value}`;
-  option.textContent = `${value}`
+  option.textContent = `${value}`;
   selectValues.appendChild(option);
 });

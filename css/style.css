@@ -556,6 +556,7 @@ textarea {
   margin-bottom: 10px;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
+  max-width: 100%;
 }
 
 label {
@@ -569,10 +570,10 @@ label {
   border-radius: 5px;
   margin-bottom: 10px;
   font-weight: 400;
-  background-image: url("img/nomeIcon.png");
+  background-image: url("../img/nomeIcon.png");
   background-repeat: no-repeat;
-  background-position: 15px center;
-  background-size: 13px;
+  background-position: 14px center;
+  background-size: 16px;
   padding-left: 40px;
 }
 
