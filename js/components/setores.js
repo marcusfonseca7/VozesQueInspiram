@@ -5,22 +5,18 @@ import {
   getDocs,
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
-// --------------------------------------------------
+import { obterPessoas } from "../services/pessoaService.js";
+
 // CARREGAR SETORES
-// --------------------------------------------------
 
 async function carregarSetores() {
   const departmentSelect = document.getElementById("department");
 
   try {
-    const pessoasRef = collection(db, "pessoas");
-    const snapshot = await getDocs(pessoasRef);
-
+    const pessoas = obterPessoas();
     const setores = new Set();
 
-    snapshot.forEach((doc) => {
-      const pessoa = doc.data();
-
+    pessoas.forEach((pessoa) => {
       if (pessoa.setor) {
         setores.add(pessoa.setor);
       }
@@ -44,9 +40,7 @@ async function carregarSetores() {
   }
 }
 
-// --------------------------------------------------
 // CARREGAR PESSOAS
-// --------------------------------------------------
 
 async function carregarPessoas(setorSelecionado) {
   const personSelect = document.getElementById("person");
@@ -76,29 +70,28 @@ async function carregarPessoas(setorSelecionado) {
   }
 
   try {
-    const pessoasRef = collection(db, "pessoas");
-    const snapshot = await getDocs(pessoasRef);
+    const pessoas = obterPessoas();
 
-    snapshot.forEach((doc) => {
-      const pessoa = doc.data();
+    const pessoasDoSetor = pessoas.filter(
+      (pessoa) => pessoa.setor === setorSelecionado,
+    );
 
-      if (pessoa.setor === setorSelecionado) {
-        const option = document.createElement("option");
+    pessoasDoSetor.sort((a, b) => a.nome.localeCompare(b.nome));
 
-        option.value = pessoa.nome;
-        option.textContent = pessoa.nome;
+    pessoasDoSetor.forEach((pessoa) => {
+      const option = document.createElement("option");
 
-        personSelect.appendChild(option);
-      }
+      option.value = pessoa.nome;
+      option.textContent = pessoa.nome;
+
+      personSelect.appendChild(option);
     });
   } catch (error) {
     console.error("Erro ao carregar pessoas:", error);
   }
 }
 
-// --------------------------------------------------
 // EVENTO DO SELECT DE SETOR
-// --------------------------------------------------
 
 function configurarSetores() {
   const departmentSelect = document.getElementById("department");

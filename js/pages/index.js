@@ -1,18 +1,21 @@
-import { configurarPopup } from "./components/popup.js";
+import { configurarPopup } from "../components/popup.js";
 
-import { getSelectedRating, resetStars } from "./components/estrelas.js";
+import { getSelectedRating, resetStars } from "../components/estrelas.js";
 
-import { carregarSetores, configurarSetores } from "./components/setores.js";
+import { carregarSetores, configurarSetores } from "../components/setores.js";
 
-import { carregarValores } from "./components/valores.js";
+import { carregarValores } from "../components/valores.js";
 
-import { cadastrarElogio } from "./services/elogiosService.js";
+import { cadastrarElogio } from "../services/elogiosService.js";
+
+import { carregarPessoas } from "../services/pessoaService.js";
 
 // --------------------------------------------------
 // INICIALIZAÇÃO
 // --------------------------------------------------
 
 configurarPopup();
+await carregarPessoas();
 carregarSetores();
 configurarSetores();
 carregarValores();
@@ -34,9 +37,7 @@ complimentForm.addEventListener("submit", async (event) => {
 
   const estrelas = getSelectedRating();
 
-  // --------------------------------------------------
   // VALIDAÇÕES
-  // --------------------------------------------------
 
   if (estrelas === 0) {
     alert("Selecione uma avaliação de 1 a 5 estrelas.");
@@ -63,9 +64,7 @@ complimentForm.addEventListener("submit", async (event) => {
     return;
   }
 
-  // --------------------------------------------------
   // ENVIO
-  // --------------------------------------------------
 
   try {
     await cadastrarElogio({
@@ -81,9 +80,7 @@ complimentForm.addEventListener("submit", async (event) => {
 
     alert("Elogio enviado com sucesso! ❤️");
 
-    // --------------------------------------------------
     // LIMPAR FORMULÁRIO
-    // --------------------------------------------------
 
     complimentForm.reset();
     resetStars();
