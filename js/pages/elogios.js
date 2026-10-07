@@ -8,7 +8,6 @@ await carregarPessoas();
 
 const elogios = obterElogios();
 const pessoas = obterPessoas();
-
 const setores = new Set();
 
 pessoas.forEach((pessoa) => {
@@ -17,9 +16,12 @@ pessoas.forEach((pessoa) => {
   }
 });
 
+console.log(pessoas);
+const setoresOrdenados = [...setores].sort((a, b) => a.localeCompare(b));
+const pessoasOrdenadas = pessoas.sort((a, b) => a.nome.localeCompare(b.nome));
 const elogiosList = document.getElementById("elogiosList");
 
-setores.forEach((setor) => {
+setoresOrdenados.forEach((setor) => {
   elogiosList.innerHTML += `
 
     <h2 class="setor-title">${setor}</h2> 
@@ -27,7 +29,7 @@ setores.forEach((setor) => {
     </div>
     `;
 
-  pessoas.forEach((pessoa) => {
+  pessoasOrdenadas.forEach((pessoa) => {
     const elogiosDaPessoa = elogios.filter(
       (elogio) => elogio.pessoa === pessoa.nome && elogio.setor === setor,
     );
@@ -74,14 +76,28 @@ document.addEventListener("click", (event) => {
   } else {
     elogiosDaPessoa.forEach((elogio) => {
       dialogConteudo.innerHTML += `
-                <div class="elogio">
-                    <strong>${elogio.valor}</strong>
+                <div class="elogio-container">
 
-                    <p>${elogio.elogio}</p>
+                <div class="elogio">  
+                  <strong>Elogio:</strong>
+                  <p class="elogio-dado">${elogio.elogio}</p>
+                </div>
 
-                    <small>
-                        Enviado por: ${elogio.nome}
-                    </small>
+                <div class="elogio-estrelas">  
+                  <strong>Estrelas:</strong>
+                  <p class="elogio-dado">${elogio.estrelas}</p>
+                </div>
+
+                  <div class="elogio-enviado">
+                    <strong>Enviado por: </strong>
+                    <p class="elogio-dado">${elogio.nome} </p>
+                  </div>
+
+                  <div class="elogio-valor">
+                    <strong>Valor: </strong>
+                    <p class="elogio-dado">${elogio.valor} </p>
+                  </div>
+
                 </div>
             `;
     });

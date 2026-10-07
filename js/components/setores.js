@@ -22,12 +22,11 @@ async function carregarSetores() {
       }
     });
 
-    // Setores que não possuem pessoas individuais
-    setores.add("Cantina");
-    setores.add("Segurança");
-    setores.add("Limpeza e Serviços Gerais");
+    const setoresOrdenados = [...setores].sort((a, b) =>
+      a.localeCompare(b),
+    );
 
-    setores.forEach((setor) => {
+    setoresOrdenados.forEach((setor) => {
       const option = document.createElement("option");
 
       option.value = setor;
@@ -48,24 +47,6 @@ async function carregarPessoas(setorSelecionado) {
   personSelect.innerHTML = '<option value="">Selecione uma pessoa</option>';
 
   if (!setorSelecionado) {
-    return;
-  }
-
-  // Setores que não possuem pessoas individuais
-  const setoresEspeciais = {
-    Cantina: "Equipe da Cantina",
-    Segurança: "Equipe de Segurança",
-    "Limpeza e Serviços Gerais": "Equipe de Limpeza e Serviços Gerais",
-  };
-
-  if (setoresEspeciais[setorSelecionado]) {
-    const option = document.createElement("option");
-
-    option.value = setoresEspeciais[setorSelecionado];
-    option.textContent = setoresEspeciais[setorSelecionado];
-
-    personSelect.appendChild(option);
-
     return;
   }
 
