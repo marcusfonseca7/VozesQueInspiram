@@ -3,10 +3,11 @@ import { db } from "../firebase/firebase.js";
 import {
   collection,
   addDoc,
+  getDocs,
   serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
-async function cadastrarElogio(dados) {
+export async function cadastrarElogio(dados) {
   const elogiosRef = collection(db, "elogios");
 
   await addDoc(elogiosRef, {
@@ -20,4 +21,19 @@ async function cadastrarElogio(dados) {
   });
 }
 
-export { cadastrarElogio };
+let elogios = [];
+
+export async function carregarElogios() {
+  const elogiosRef = collection(db, "elogios");
+  const snapshot = await getDocs(elogiosRef);
+
+  elogios = snapshot.docs.map((doc) => ({
+    ...doc.data(),
+  }));
+
+  return elogios;
+}
+
+export function obterElogios() {
+  return elogios;
+}

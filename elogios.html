@@ -11,7 +11,7 @@
   </head>
   <body>
     <!-- ---------------------- HEADER ---------------------- -->
-    <header class="header">
+    <header class="header" style="position: static">
       <div class="header__logos">
         <img
           src="img/logoSenai.jpeg"
@@ -38,6 +38,12 @@
       </nav>
     </header>
 
+    <main>
+      <div class="elogios-container">
+        <h2 class="elogios-title">Elogios</h2>
+        <div class="elogios-list" id="elogiosList"></div>
+      </div>
+    </main>
 
     <!-- ---------------------- FOOTER ---------------------- -->
     <footer class="footer">
@@ -68,6 +74,16 @@
       </div>
     </footer>
 
-    <script type="module" src="./js/pages/index.js"></script>
+    <div id="popupBackground"></div>
+
+    <dialog id="dialogElogios">
+      <button id="fecharDialog" type="button">×</button>
+
+      <h2 id="dialogTitulo"></h2>
+
+      <div id="dialogConteudo"></div>
+    </dialog>
+
+    <script type="module" src="./js/pages/elogios.js"></script>
   </body>
 </html>

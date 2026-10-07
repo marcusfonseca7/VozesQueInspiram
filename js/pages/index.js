@@ -6,7 +6,7 @@ import { carregarSetores, configurarSetores } from "../components/setores.js";
 
 import { carregarValores } from "../components/valores.js";
 
-import { cadastrarElogio } from "../services/elogiosService.js";
+import { cadastrarElogio } from "../services/elogioService.js";
 
 import { carregarPessoas } from "../services/pessoaService.js";
 
