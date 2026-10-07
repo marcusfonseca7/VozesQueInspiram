@@ -23,10 +23,10 @@ const elogiosList = document.getElementById("elogiosList");
 
 setoresOrdenados.forEach((setor) => {
   elogiosList.innerHTML += `
+        <h2 class="setor-title">${setor}</h2>
 
-    <h2 class="setor-title">${setor}</h2> 
-    <div class="pessoas-container" id="setor-${setor}">
-    </div>
+        <div class="pessoas-container" id="setor-${setor}">
+        </div>
     `;
 
   pessoasOrdenadas.forEach((pessoa) => {
@@ -34,17 +34,75 @@ setoresOrdenados.forEach((setor) => {
       (elogio) => elogio.pessoa === pessoa.nome && elogio.setor === setor,
     );
 
+    const mediaEstrelas =
+      elogiosDaPessoa.length > 0
+        ? (
+            elogiosDaPessoa.reduce(
+              (total, elogio) => total + Number(elogio.estrelas),
+              0,
+            ) / elogiosDaPessoa.length
+          ).toFixed(1)
+        : "—";
+
     if (pessoa.setor === setor) {
       const pessoasContainer = document.getElementById(`setor-${setor}`);
-      pessoasContainer.innerHTML += `
-        <div class="card-pessoa">
-            <h3>${pessoa.nome}</h3>
-            <p><strong>Cargo:</strong> ${pessoa.cargo || "Não informado"}</p>
-            <p><strong>Elogios:</strong> ${elogiosDaPessoa.length > 0 ? elogiosDaPessoa.length : "Não possui elogios"}</p>
 
-            <button class="btn-ver-elogios" data-pessoa="${pessoa.nome}" data-setor="${setor}">VER ELOGIOS</button>
+      pessoasContainer.innerHTML += `
+          <div class="card-pessoa">
+
+            <div class="card-pessoa__cabecalho">
+
+                <div class="card-pessoa__identificacao">
+
+                    <div class="card-pessoa__foto">
+                        <span>
+                            ${pessoa.nome
+                              .split(" ")
+                              .slice(0, 2)
+                              .map((nome) => nome[0])
+                              .join("")
+                              .toUpperCase()}
+                        </span>
+                    </div>
+
+                    <h3>${pessoa.nome}</h3>
+
+                </div>
+
+                <p class="card-pessoa__cargo">
+                    ${pessoa.cargo || "Cargo não informado"}
+                </p>
+
+            </div>
+
+            <div class="card-pessoa__linha"></div>
+
+            <div class="card-pessoa__estatisticas">
+
+                <div class="card-pessoa__estatistica">
+                    <strong>${elogiosDaPessoa.length}</strong>
+                    <span>
+                        ${elogiosDaPessoa.length === 1 ? "Elogio" : "Elogios"}
+                    </span>
+                </div>
+
+                <div class="card-pessoa__estatistica">
+                    <strong>⭐ ${mediaEstrelas}</strong>
+                    <span>Média</span>
+                </div>
+
+            </div>
+
+            <button
+                class="btn-ver-elogios"
+                data-pessoa="${pessoa.nome}"
+                data-setor="${setor}"
+            >
+                VER ELOGIOS
+            </button>
+
         </div>
-    `;
+            `;
     }
   });
 });
@@ -71,35 +129,48 @@ document.addEventListener("click", (event) => {
 
   if (elogiosDaPessoa.length === 0) {
     dialogConteudo.innerHTML = `
-            <p>Essa pessoa ainda não possui elogios.</p>
-        `;
+        <p class="sem-elogios">
+            Essa pessoa ainda não possui elogios.
+        </p>
+    `;
   } else {
     elogiosDaPessoa.forEach((elogio) => {
       dialogConteudo.innerHTML += `
-                <div class="elogio-container">
+            <article class="elogio-card">
 
-                <div class="elogio">  
-                  <strong>Elogio:</strong>
-                  <p class="elogio-dado">${elogio.elogio}</p>
-                </div>
+                <div class="elogio-card__conteudo">
 
-                <div class="elogio-estrelas">  
-                  <strong>Estrelas:</strong>
-                  <p class="elogio-dado">${elogio.estrelas}</p>
-                </div>
+                    <span class="elogio-card__label">
+                        Elogio
+                    </span>
 
-                  <div class="elogio-enviado">
-                    <strong>Enviado por: </strong>
-                    <p class="elogio-dado">${elogio.nome} </p>
-                  </div>
-
-                  <div class="elogio-valor">
-                    <strong>Valor: </strong>
-                    <p class="elogio-dado">${elogio.valor} </p>
-                  </div>
+                    <p class="elogio-card__texto">
+                        ${elogio.elogio}
+                    </p>
 
                 </div>
-            `;
+
+                <div class="elogio-card__informacoes">
+
+                    <div class="elogio-card__informacao">
+                        <span>Estrelas</span>
+                        <strong>⭐ ${elogio.estrelas}</strong>
+                    </div>
+
+                    <div class="elogio-card__informacao">
+                        <span>Valor</span>
+                        <strong>${elogio.valor}</strong>
+                    </div>
+
+                    <div class="elogio-card__informacao elogio-card__informacao--remetente">
+                        <span>Enviado por</span>
+                        <strong>${elogio.nome}</strong>
+                    </div>
+
+                </div>
+
+            </article>
+        `;
     });
   }
 
