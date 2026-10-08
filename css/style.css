@@ -245,7 +245,7 @@ ul {
   filter: invert(100%);
 }
 
-/* ===== SOBRE O PROJETO ===== */
+/* - - - - - - - - - - - - - - - - - - - - - SOBRE O PROJETO - - - - - - - - - - - - - - - - - - - - - */
 .sobre {
   position: relative;
   background-color: #f4f6f8;
@@ -364,7 +364,7 @@ ul {
   height: auto;
 }
 
-/* ===== FOOTER ===== */
+/* - - - - - - - - - - - - - - - - - - - - - FOOTER - - - - - - - - - - - - - - - - - - - - - */
 .footer {
   position: relative;
   overflow: hidden;
@@ -377,7 +377,7 @@ ul {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(100deg, #f1f1f1 100%);
+  background: linear-gradient(100deg, #dadada 100%);
 }
 
 .footer__content {
@@ -678,7 +678,7 @@ input[type="radio"] {
   outline: none;
 }
 
-/* ===== RESPONSIVO ===== */
+/* - - - - - - - - - - - - - - - - - - - - - RESPONSIVO - - - - - - - - - - - - - - - - - - - - -*/
 
 @media (max-width: 1440px) {
   /* POPUP */
@@ -780,6 +780,10 @@ input[type="radio"] {
 }
 
 /* - - - - - - - - - - - - - - - - ELOGIOS - - - - - - - - - - - - - - - - */
+
+.header.elogios {
+  background-color: #000000;
+}
 
 .elogios-container {
   width: min(1200px, 92%);
