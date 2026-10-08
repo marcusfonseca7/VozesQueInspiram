@@ -1,7 +1,6 @@
-/* ===== IMPORT DE FONTES ===== */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-
-/* ===== RESET E VARIÁVEIS ===== */
+/* - - - - - - - - - - - - - - - - - - - - - IMPORT DE FONTES - - - - - - - - - - - - - - - - - - - - - */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* - - - - - - - - - - - - - - - - - - - - - RESET E VARIÁVEIS - - - - - - - - - - - - - - - - - - - - - */
 :root {
   --color-red: #ed1c24;
   --color-orange: #ff8a00;
@@ -47,7 +46,7 @@ ul {
   list-style: none;
 }
 
-/* ===== HEADER ===== */
+/* - - - - - - - - - - - - - - - - - - - - - HEADER - - - - - - - - - - - - - - - - - - - - - */
 .header {
   position: absolute;
   top: 0;
@@ -66,10 +65,6 @@ ul {
   display: flex;
   align-items: center;
   gap: 16px;
-
-  /* padding: 23px;
-  background-color: #ffffff;
-  height: 100%; */
 }
 
 .header__logo {
@@ -113,11 +108,18 @@ ul {
   transition: color 0.2s ease;
 }
 
+.header__nav-link.ativo {
+  color: var(--color-orange);
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-decoration: underline;
+}
+
 .header__nav-link:hover {
   color: var(--color-orange);
 }
 
-/* ===== HERO ===== */
+/* - - - - - - - - - - - - - - - - - - - - - HERO - - - - - - - - - - - - - - - - - - - - - */
 
 .hero {
   min-height: 100vh;
@@ -306,6 +308,12 @@ ul {
   object-fit: contain;
 }
 
+.sobre-card__icon.pertencer {
+  height: 75px;
+  width: auto;
+  object-fit: contain;
+}
+
 .sobre-card__text {
   font-family: var(--font-body);
   font-weight: 400;
@@ -323,39 +331,6 @@ ul {
   opacity: 0.9;
 }
 
-.sobre__pertencer {
-  margin-top: 50px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.sobre__pertencer a {
-  position: relative;
-  font-size: 1.2rem;
-}
-
-.sobre__pertencer a::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: rgb(233, 2, 2);
-  transition: width 0.3s ease;
-}
-
-.sobre__pertencer a:hover::after {
-  width: 100%;
-}
-
-.sobre__pertencer img {
-  width: 15px;
-  display: inline;
-}
-
 .sobre__mascot {
   position: absolute;
   bottom: 40px;
@@ -368,16 +343,17 @@ ul {
 .footer {
   position: relative;
   overflow: hidden;
-  min-height: 260px;
+  min-height: 170px;
   display: flex;
   align-items: center;
+  color: var(--color-white);
 }
 
 .footer__background {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(100deg, #dadada 100%);
+  background: linear-gradient(100deg, #303030 100%);
 }
 
 .footer__content {
@@ -415,7 +391,7 @@ ul {
 
 .pertencer {
   background-color: transparent;
-  width: 80px;
+  width: 100px;
   height: 70px;
 }
 
@@ -433,7 +409,6 @@ ul {
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.95rem;
-  color: var(--color-dark);
 }
 
 .footer__info-text--bold {
@@ -483,6 +458,7 @@ body.opened {
   transform: translateX(-50%);
   border-radius: 15px;
   padding: 20px 30px;
+  min-width: 580px;
 }
 
 .close-popup {
@@ -678,132 +654,681 @@ input[type="radio"] {
   outline: none;
 }
 
-/* - - - - - - - - - - - - - - - - - - - - - RESPONSIVO - - - - - - - - - - - - - - - - - - - - -*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - RESPONSIVIDADE - - - - - - - - - - - - - - - - - - - - - - - - */
 
-@media (max-width: 1440px) {
-  /* POPUP */
-  .popup-content.opened {
-    height: max-content;
+@media (max-width: 1500px) {
+  .sobre__mascot {
+    width: 240px;
+    left: 25px;
+  }
+}
+
+/* - - - - - - - - - - - - - - - - DESKTOP MENOR - - - - - - - - - - - - - - - - */
+
+@media (max-width: 1200px) {
+  /* HEADER */
+
+  .header {
+    padding: 20px 32px;
   }
 
-  form {
-    padding: 10px 0;
-    gap: 0px;
-    width: 100%;
+  .header__nav-list {
+    padding-right: 0;
+    gap: 35px;
   }
 
-  .message__principal {
-    font-size: 0.8rem;
+  /* HERO */
+
+  .hero__content {
+    padding: 130px 32px 70px;
   }
-  .message__sub {
+
+  .hero__container-title {
+    padding: 18px 45px;
+  }
+
+  .hero__title {
+    font-size: 3.2rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.4rem;
+  }
+
+  .hero__question {
+    font-size: 3rem;
+    max-width: 750px;
+  }
+
+  .hero__button {
+    padding: 15px 90px;
+  }
+
+  /* SOBRE */
+
+  .sobre {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .sobre__cards {
+    gap: 24px;
+  }
+
+  .sobre-card {
+    max-width: 310px;
+  }
+
+  .sobre__mascot {
+    width: 240px;
+    left: 15px;
+    bottom: 10px;
+  }
+
+  /* FOOTER */
+
+  .footer__content {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+/* - - - - - - - - - - - - - - - - TABLET - - - - - - - - - - - - - - - - */
+
+@media (max-width: 900px) {
+  /* HEADER */
+
+  .header {
+    padding: 18px 24px;
+  }
+
+  .header__logo--senai {
+    width: 110px;
+    height: 30px;
+  }
+
+  .header__logo--pertencer {
+    width: 90px;
+    height: 58px;
+  }
+
+  .header__logos {
+    gap: 12px;
+  }
+
+  .header__nav-list {
+    gap: 25px;
+  }
+
+  .header__nav-link {
+    font-size: 0.9rem;
+  }
+
+  /* HERO */
+
+  .hero__content {
+    padding: 120px 24px 60px;
+  }
+
+  .hero__container-title {
+    width: 90%;
+    padding: 18px 25px;
+    margin-bottom: 35px;
+  }
+
+  .hero__title {
+    font-size: 2.8rem;
+    line-height: 1.1;
+  }
+
+  .hero__subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero__question {
+    font-size: 2.6rem;
+    max-width: 650px;
+    margin-bottom: 40px;
+  }
+
+  .hero__button {
+    padding: 14px 70px;
+    font-size: 1.2rem;
+  }
+
+  .hero__description {
+    font-size: 1rem;
+    max-width: 400px;
+  }
+
+  /* SOBRE */
+
+  .sobre {
+    padding: 70px 24px 180px;
+  }
+
+  .sobre__title {
+    font-size: 2.2rem;
+    margin-bottom: 45px;
+  }
+
+  .sobre__cards {
+    gap: 20px;
+  }
+
+  .sobre-card {
+    max-width: 280px;
+    min-height: 340px;
+    padding: 32px 24px;
+  }
+
+  .sobre__mascot {
+    width: 200px;
+  }
+
+  /* FOOTER */
+
+  .footer__content {
+    padding: 30px 24px;
+  }
+}
+
+/* - - - - - - - - - - - - - - - - CELULAR - - - - - - - - - - - - - - - - */
+
+@media (max-width: 600px) {
+  /* HEADER */
+
+  .header {
+    /* position: relative; */
+    padding: 12px 18px;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .header__logos {
+    gap: 10px;
+  }
+
+  .header__logo--senai {
+    width: 105px;
+    height: 28px;
+  }
+
+  .header__logo--pertencer {
+    width: 75px;
+    height: 52px;
+  }
+
+  .header__divider {
+    height: 25px;
+  }
+
+  .header__nav-list {
+    gap: 28px;
+    padding: 0;
+  }
+
+  .header__nav-link {
     font-size: 0.8rem;
   }
 
   /* HERO */
 
+  .hero {
+    min-height: calc(100vh - 105px);
+  }
+
+  .hero__background {
+    background-position: center;
+  }
+
+  .hero__content {
+    min-height: calc(100vh - 105px);
+    padding: 100px 18px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero__container-title {
+    width: 100%;
+    max-width: 430px;
+    padding: 16px 15px;
+    margin-bottom: 30px;
+    border-radius: 14px;
+  }
+
   .hero__title {
-    font-size: 3rem;
+    font-size: 1.75rem;
+    line-height: 1.15;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .hero__subtitle {
+    font-size: 0.95rem;
+    line-height: 1.3;
+    padding: 4px 5px;
   }
 
   .hero__question {
-    font-size: 3.3rem;
+    width: 100%;
+    max-width: 400px;
+    font-size: 2rem;
+    line-height: 1.25;
+    margin-bottom: 30px;
   }
 
-  .header__nav-list {
-    padding-right: 0px;
+  .hero__button {
+    width: min(90%, 360px);
+    padding: 14px 20px;
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+
+  .hero__description {
+    width: 100%;
+    max-width: 350px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .seta-baixo {
+    width: 16px;
+    bottom: 15px;
   }
 
   /* SOBRE */
 
+  .sobre {
+    padding: 60px 18px 150px;
+  }
+
+  .sobre__title {
+    width: auto;
+    font-size: 1.9rem;
+    line-height: 1.2;
+    margin-bottom: 35px;
+  }
+
+  .sobre__cards {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .sobre-card {
+    width: 100%;
+    max-width: 360px;
+    min-height: 320px;
+    padding: 30px 24px;
+  }
+
+  .sobre-card__icon {
+    height: 70px;
+  }
+
+  .sobre-card__icon.senai {
+    height: 50px;
+  }
+
+  .sobre-card__text {
+    font-size: 0.9rem;
+  }
+
   .sobre__mascot {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    width: 250px;
-    height: auto;
+    width: 180px;
+    margin: 35px auto 0;
   }
 
   /* FOOTER */
 
   .footer {
-    position: relative;
-    overflow: hidden;
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-  }
-}
-
-@media (max-width: 768px) {
-  .header {
-    padding: 16px 24px;
-    flex-direction: column;
-    gap: 16px;
-    position: relative;
-  }
-
-  .header__nav-list {
-    gap: 24px;
-  }
-
-  .hero__title {
-    font-size: 2.8rem;
-  }
-
-  .hero__question {
-    font-size: 2rem;
-  }
-
-  .hero__cta {
-    padding: 16px 36px;
-    font-size: 1.1rem;
-  }
-
-  .sobre {
-    padding: 64px 24px 160px;
-  }
-
-  .sobre__cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .sobre__mascot {
-    position: static;
-    margin: 32px auto 0;
+    min-height: auto;
   }
 
   .footer__content {
+    padding: 30px 18px;
     flex-direction: column;
     text-align: center;
+    gap: 25px;
+  }
+
+  .footer__realizacao {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .footer__realizacao-label {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .footer__logo {
+    height: 35px;
+  }
+
+  .footer__logo.pertencer {
+    height: 57px;
+  }
+
+  .footer__info-text {
+    font-size: 0.8rem;
+  }
+}
+
+/* - - - - - - - - - - - - - - - - CELULAR PEQUENO - - - - - - - - - - - - - - - - */
+
+@media (max-width: 400px) {
+  /* HEADER */
+
+  .header {
+    padding: 10px 10px;
+  }
+
+  .header__logos {
+    gap: 5px;
+  }
+
+  .header__logo--senai {
+    width: 80px;
+    height: 22px;
+  }
+
+  .header__logo--pertencer {
+    width: 60px;
+    height: 40px;
+  }
+
+  .header__nav-list {
+    gap: 18px;
+    padding-right: 10px;
+  }
+
+  /* HERO */
+
+  .hero__content {
+    padding: 50px 14px 40px;
+  }
+
+  .hero__container-title {
+    padding: 14px 10px;
+  }
+
+  .hero__title {
+    font-size: 1.4rem;
+  }
+
+  .hero__subtitle {
+    font-size: 0.8rem;
+  }
+
+  .hero__question {
+    font-size: 1.7rem;
+  }
+
+  .hero__button {
+    width: 95%;
+
+    font-size: 0.9rem;
+  }
+
+  .hero__description {
+    font-size: 0.85rem;
+  }
+
+  /* SOBRE */
+
+  .sobre {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .sobre__title {
+    font-size: 1.7rem;
+  }
+
+  .sobre-card {
+    max-width: 95%;
+  }
+}
+
+/* - - - - - - - - - - - - - - - - PARA O POPUP - - - - - - - - - - - - - - - - */
+
+@media (max-width: 900px) {
+  .popup-content.opened {
+    width: 65%;
+    min-width: 0;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 20px 25px;
+  }
+
+  .close-popup {
+    width: 18px;
+    top: 18px;
+    right: 18px;
+  }
+
+  .popup__title {
+    font-size: 1.1rem;
+  }
+
+  .container__message {
+    padding: 12px;
+  }
+
+  .message__principal {
+    font-size: 0.9rem;
+  }
+
+  .message__sub {
+    font-size: 0.75rem;
+  }
+
+  .stars img {
+    width: 26px;
+    margin: 0 5px;
+  }
+}
+
+/* - - - - - - - - - - - - - - - - CELULAR - - - - - - - - - - - - - - - - */
+@media (max-width: 600px) {
+  .popup-background.opened {
+    position: fixed;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .popup-content.opened {
+    width: calc(100% - 30px);
+    max-height: 95dvh;
+    overflow-y: auto;
+    padding: 20px 18px;
+    border-radius: 12px;
+  }
+
+  .close-popup {
+    width: 17px;
+    top: 15px;
+    right: 15px;
+  }
+
+  .popup__title {
+    font-size: 1rem;
+    padding-right: 25px;
+  }
+
+  .popup-content h3 {
+    font-size: 0.75rem;
+  }
+
+  /* Mensagem */
+  .container__message {
+    padding: 10px;
+    margin-top: 8px;
+  }
+
+  .message__heart {
+    width: 15%;
+    padding-right: 8px;
+  }
+
+  .message {
+    width: 85%;
+    padding: 0 5px;
+  }
+
+  .message__principal {
+    font-size: 0.8rem;
+  }
+
+  .message__sub {
+    font-size: 0.7rem;
+  }
+
+  /* Selects */
+  .container__selects {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .department__select,
+  .person__select {
+    width: 100%;
+  }
+
+  /* Inputs */
+  .input__name {
+    padding: 9px 8px 9px 40px;
+  }
+
+  select,
+  input,
+  textarea {
+    font-size: 0.8rem;
+  }
+
+  label {
+    font-size: 0.75rem;
+  }
+
+  /* Estrelas */
+  .stars__question {
+    font-size: 0.75rem;
+  }
+
+  .stars {
+    padding: 8px;
+  }
+
+  .stars img {
+    width: 24px;
+    margin: 0 4px;
+  }
+
+  /* Textarea */
+  #compliment {
+    height: 80px;
+  }
+
+  /* Botão */
+  .button-send {
+    font-size: 0.9rem;
+    padding: 9px 5px;
+  }
+
+  .button-send img {
+    width: 22px;
+  }
+}
+
+/* - - - - - - - - - - - - - - - - CELULARES PEQUENOS - - - - - - - - - - - - - - - - */
+
+@media (max-width: 400px) {
+  .popup-content.opened {
+    width: calc(100% - 20px);
+    padding: 18px 14px;
+  }
+
+  .popup__title {
+    font-size: 0.95rem;
+  }
+
+  .popup-content h3 {
+    font-size: 0.7rem;
+  }
+
+  .container__message {
+    padding: 8px;
+  }
+
+  .message__principal {
+    font-size: 0.75rem;
+  }
+
+  .message__sub {
+    font-size: 0.65rem;
+  }
+
+  .stars img {
+    width: 21px;
+    margin: 0 3px;
+  }
+
+  .button-send {
+    font-size: 0.85rem;
   }
 }
 
 /* - - - - - - - - - - - - - - - - ELOGIOS - - - - - - - - - - - - - - - - */
+.elogios-main {
+  position: relative;
+  background-color: #f1f1f1;
+  padding: 0 0 50px;
+}
 
 .header.elogios {
   background-color: #000000;
+  height: 90px;
 }
 
 .elogios-container {
-  width: min(1200px, 92%);
+  width: min(1100px, 92%);
   margin: 0 auto;
-  padding: 40px 0 60px;
+  padding: 35px 0 50px;
 }
 
 .elogios-title {
-  margin: 0 0 45px;
-
+  background-image: linear-gradient(
+    -90deg,
+    #dc0000 0%,
+    #ff8000 50%,
+    #a2ae00 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-align: center;
   font-size: 2rem;
   font-weight: 700;
+  font-family: "Poppins", sans-serif;
+}
+
+.elogios-description {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 0 0 20px;
 }
 
 .elogios-list {
   display: flex;
   flex-direction: column;
-  gap: 55px;
-
+  gap: 20px;
   width: 100%;
 }
 
@@ -811,27 +1336,24 @@ input[type="radio"] {
 
 .setor-title {
   position: relative;
-
   width: fit-content;
-  margin: 0 auto 25px;
-  padding: 0 25px;
-
-  font-size: 1.4rem;
-  font-weight: 600;
+  margin: 52px auto 8px;
+  padding: 0 20px;
+  font-size: 1.25rem;
+  font-weight: 700;
   text-align: center;
+  line-height: 1.3;
 }
 
 .setor-title::before,
 .setor-title::after {
   content: "";
-
   position: absolute;
   top: 50%;
-
-  width: 35px;
+  transform: translateY(-50%);
+  width: 55px;
   height: 1px;
-
-  background: #dcdcdc;
+  background: #d5d5d5;
 }
 
 .setor-title::before {
@@ -849,8 +1371,7 @@ input[type="radio"] {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 22px;
-
+  gap: 20px;
   width: 100%;
 }
 
@@ -858,21 +1379,16 @@ input[type="radio"] {
 
 .card-pessoa {
   box-sizing: border-box;
-
   width: 100%;
   max-width: 280px;
   height: 300px;
   padding: 24px;
-
   display: flex;
   flex-direction: column;
-
   background: #fff;
   border: 1px solid #e8e8e8;
   border-radius: 16px;
-
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
@@ -880,7 +1396,6 @@ input[type="radio"] {
 
 .card-pessoa:hover {
   transform: translateY(-4px);
-
   box-shadow: 0 8px 25px rgba(253, 143, 0, 0.345);
 }
 
@@ -1004,8 +1519,13 @@ input[type="radio"] {
   }
 
   .elogios-title {
-    margin-bottom: 35px;
     font-size: 1.7rem;
+  }
+  
+  .elogios-description {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    margin-bottom: 35px;
   }
 
   .elogios-list {
@@ -1021,7 +1541,7 @@ input[type="radio"] {
 
   .setor-title::before,
   .setor-title::after {
-    width: 100%;
+    width: 10%;
   }
 
   .pessoas-container {
@@ -1058,25 +1578,18 @@ input[type="radio"] {
   position: absolute;
   top: 14px;
   right: 14px;
-
   width: 34px;
   height: 34px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border: none;
   border-radius: 50%;
-
   background: #f1f1f1;
   color: #555;
-
   font-size: 21px;
   line-height: 1;
-
   cursor: pointer;
-
   transition: 0.2s ease;
 }
 
