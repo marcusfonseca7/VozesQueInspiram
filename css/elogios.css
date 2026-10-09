@@ -131,14 +131,14 @@ body {
   background-color: #fff;
   border: 1px solid #eaeaea;
   border-radius: 12px;
-  box-shadow: 0 3px 12px rgb(0 0 0 / 3%);
+  box-shadow: 0 1px 10px rgba(145, 82, 0, 0.212);
   transition:
     box-shadow 0.2s ease,
     border-color 0.2s ease;
 }
 
 .historico-elogio:hover {
-  border-color: #e1d4ca;
+  border-color: #d85e00;
   box-shadow: 0 5px 16px rgb(0 0 0 / 5%);
 }
 
@@ -162,13 +162,13 @@ body {
 
 .historico-elogio__data span:first-child {
   color: #454545;
-  font-size: 0.78rem;
+  font-size: 0.9rem;
   font-weight: 700;
 }
 
 .historico-elogio__data span:last-child {
   color: #999;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
 }
 
 .historico-elogio__estrelas {
@@ -209,11 +209,11 @@ body {
 .historico-elogio__texto {
   width: 100%;
   color: #414141;
-  font-size: 0.84rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.75;
   overflow-wrap: anywhere;
-  padding: 10px;
+  padding: 10px 2px;
 }
 
 /* - - - - - - - - - - - - - - - - INFORMAÇÕES DO ELOGIO - - - - - - - - - - - - - - - - */
@@ -235,17 +235,18 @@ body {
 
 .historico-elogio__informacao span {
   color: #929292;
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 500;
 }
 
 .historico-elogio__informacao strong {
   color: #414141;
-  font-size: 0.76rem;
+  font-size: 0.9rem;
   font-weight: 600;
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
+
 
 /* - - - - - - - - - - - - - - - - ESTADO VAZIO E MENSAGENS - - - - - - - - - - - - - - - - */
 

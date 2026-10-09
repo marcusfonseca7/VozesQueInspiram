@@ -103,7 +103,7 @@ ul {
   width: 42px;
   height: 42px;
   padding: 0;
-  border: 1px solid rgb(255 255 255 / 10%);
+  border: 1px solid rgba(139, 95, 0, 0.685);
   border-radius: 8px;
   background: #171a21;
   cursor: pointer;
@@ -157,22 +157,29 @@ ul {
 
 .menu-dialog__container {
   position: relative;
-
   display: flex;
   flex-direction: column;
-
   width: 300px;
   height: 100%;
   margin-left: auto;
   padding: 28px 24px;
-
   box-sizing: border-box;
-
   background: #171a21;
   border-left: 1px solid rgb(255 255 255 / 8%);
   box-shadow: -10px 0 30px rgb(0 0 0 / 25%);
+  animation: abrirMenu 0.3s ease forwards;
+}
 
-  animation: abrirMenu 1s ease forwards;
+@keyframes fecharMenu {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 
 @keyframes abrirMenu {
@@ -189,19 +196,17 @@ ul {
 
 .menu-dialog__container::before {
   content: "MENU";
-
   display: block;
-
-  padding-bottom: 18px;
+  padding-bottom: 20px;
   margin-bottom: 24px;
-
-  color: rgb(255 255 255 / 45%);
+  color: rgba(255, 124, 17, 0.993);
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 2px;
 
-  border-bottom: 1px solid rgb(255 255 255 / 10%);
+  border-bottom: 1px solid;
+  border-image: linear-gradient(to right, #fda501, #dfc900, #ce5200) 1;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - BOTÃO FECHAR - - - - - - - - - - - - - - - - - - - - -*/
@@ -220,15 +225,11 @@ ul {
 
   border: 1px solid rgb(255 255 255 / 10%);
   border-radius: 8px;
-
   background: rgb(255 255 255 / 5%);
   color: var(--color-white);
-
   font-size: 1.5rem;
   line-height: 1;
-
   cursor: pointer;
-
   transition:
     background 0.2s ease,
     color 0.2s ease,
@@ -488,6 +489,8 @@ ul {
 
 .sobre-card__icon.senai {
   height: 55px;
+  margin-top: 10px;
+  margin-bottom: 7px;
   width: auto;
   object-fit: contain;
 }
@@ -501,18 +504,9 @@ ul {
 .sobre-card__text {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--color-text-muted);
-  line-height: 1.6;
-}
-
-.sobre-card__watermark {
-  position: absolute;
-  bottom: 20px;
-  right: 24px;
-  width: 70px;
-  height: auto;
-  opacity: 0.9;
+  line-height: 1.5;
 }
 
 .sobre__pertencer {
@@ -528,6 +522,20 @@ ul {
 .sobre__pertencer p {
   position: relative;
   font-size: 1.2rem;
+}
+
+.destaque-gradiente {
+  background-image: linear-gradient(
+    -90deg,
+    #ff0000 0%,
+    #d36900 50%,
+    #e09900 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  font-weight: bold;
 }
 
 .mascot {
@@ -553,7 +561,11 @@ ul {
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(circle at 10% 100%, rgba(237, 94, 28, 0.1), transparent 35%),
+    radial-gradient(
+      circle at 10% 100%,
+      rgba(237, 94, 28, 0.1),
+      transparent 35%
+    ),
     linear-gradient(135deg, #2d2925, #221e1c);
 }
 
@@ -1501,7 +1513,7 @@ input[type="radio"] {
   }
 }
 
-/* - - - - - - - - - - - - - - - - ELOGIOS - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - RECONHECIMENTO - - - - - - - - - - - - - - - - */
 .elogios-main {
   position: relative;
   background-color: #f1f1f1;
@@ -1720,10 +1732,12 @@ input[type="radio"] {
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+  transition: ease 0.2s transform;
 }
 
 .btn-ver-elogios:hover {
   opacity: 0.8;
+  transform: translateY(-2px);
 }
 
 /* - - - - - - - - - - - - - - - - RESPONSIVIDADE - - - - - - - - - - - - - - - - */
