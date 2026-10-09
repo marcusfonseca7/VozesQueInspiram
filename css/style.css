@@ -1922,10 +1922,12 @@ input[type="radio"] {
 
   min-width: 0;
   text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .elogio-card__informacao span {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.3px;
