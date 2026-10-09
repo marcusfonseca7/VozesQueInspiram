@@ -1839,7 +1839,7 @@ input[type="radio"] {
   text-align: center;
 }
 
-/* - - - - - - - - - - - - - - - - LISTA DE ELOGIOS - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - LISTA DE PESSOAS - - - - - - - - - - - - - - - - */
 
 #dialogConteudo {
   display: flex;
@@ -1853,7 +1853,7 @@ input[type="radio"] {
   padding: 2px 8px 2px 2px;
 }
 
-/* - - - - - - - - - - - - - - - - CARD DE ELOGIO - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - CARD DE PESSOAS - - - - - - - - - - - - - - - - */
 
 .elogio-card {
   display: flex;
@@ -1878,7 +1878,7 @@ input[type="radio"] {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-/* - - - - - - - - - - - - - - - - CONTEÚDO DO ELOGIO - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - CONTEÚDO DO PESSOAS - - - - - - - - - - - - - - - - */
 
 .elogio-card__conteudo {
   display: flex;
@@ -1921,6 +1921,7 @@ input[type="radio"] {
   gap: 4px;
 
   min-width: 0;
+  text-align: center;
 }
 
 .elogio-card__informacao span {

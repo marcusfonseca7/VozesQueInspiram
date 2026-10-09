@@ -162,12 +162,12 @@ function renderizarElogios() {
           <div class="historico-elogio__informacoes">
             <div class="historico-elogio__informacao">
               <span>Enviado por</span>
-              <strong style="color: #d16900; font-size: 1.05rem;">${escaparHTML(elogio.nome || "Não informado")}</strong>
+              <strong style="color: #d16900; font-size: .9rem;">${escaparHTML(elogio.nome || "Não informado")}</strong>
             </div>
 
             <div class="historico-elogio__informacao">
               <span>Para</span>
-              <strong style="color: #d16900; font-size: 1.05rem;">${escaparHTML(elogio.pessoa || "Não informado")}</strong>
+              <strong style="color: #d16900; font-size: .9rem;">${escaparHTML(elogio.pessoa || "Não informado")}</strong>
             </div>
 
             <div class="historico-elogio__informacao">
