@@ -1833,9 +1833,10 @@ input[type="radio"] {
 #dialogTitulo {
   margin: 0 40px 25px 0;
 
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.3rem;
+  font-weight: 500;
   line-height: 1.3;
+  font-family: "Poppins", sans-serif;
   text-align: center;
 }
 
@@ -1922,8 +1923,7 @@ input[type="radio"] {
 
   min-width: 0;
   text-align: center;
-  align-items: center;
-  justify-content: center;
+
 }
 
 .elogio-card__informacao span {
@@ -1937,11 +1937,9 @@ input[type="radio"] {
 
 .elogio-card__informacao strong {
   overflow: hidden;
-
   font-size: 13px;
   font-weight: 600;
   line-height: 1.3;
-
   color: #333;
   text-overflow: ellipsis;
 }
@@ -1954,9 +1952,7 @@ input[type="radio"] {
 
 .sem-elogios {
   margin: 20px 0;
-
   text-align: center;
-
   font-size: 14px;
   color: #777;
 }
@@ -1972,7 +1968,7 @@ input[type="radio"] {
   #dialogTitulo {
     margin-bottom: 20px;
 
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
 
   #dialogConteudo {
@@ -1984,8 +1980,8 @@ input[type="radio"] {
   }
 
   .elogio-card__informacoes {
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    flex-direction: column;
+    gap: 20px;
   }
 
   .elogio-card__informacao--remetente {
