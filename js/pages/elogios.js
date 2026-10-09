@@ -1,182 +1,246 @@
-import { carregarSetores } from "../components/setores.js";
 import { carregarElogios, obterElogios } from "../services/elogioService.js";
-import { carregarPessoas, obterPessoas } from "../services/pessoaService.js";
 
-// INICIALIZAÇÃO
-await carregarElogios();
-await carregarPessoas();
+// ELEMENTOS DO HTML
 
-const elogios = obterElogios();
-const pessoas = obterPessoas();
-const setores = new Set();
+const elementoMesAtual = document.getElementById("mesAtual");
+const elementoTotalElogios = document.getElementById("totalElogios");
+const elementoLista = document.getElementById("elogiosHistorico");
 
-pessoas.forEach((pessoa) => {
-  if (pessoa.setor) {
-    setores.add(pessoa.setor);
+const botaoMesAnterior = document.getElementById("mesAnterior");
+const botaoProximoMes = document.getElementById("proximoMes");
+
+// ESTADO DA PÁGINA
+
+let elogios = [];
+let mesAtual;
+let anoAtual;
+
+// FUNÇÕES AUXILIARES
+
+function converterData(data) {
+  if (!data) return null;
+
+  // Timestamp do Firestore
+  if (typeof data.toDate === "function") {
+    return data.toDate();
   }
-});
 
-console.log(pessoas);
-const setoresOrdenados = [...setores].sort((a, b) => a.localeCompare(b));
-const pessoasOrdenadas = pessoas.sort((a, b) => a.nome.localeCompare(b.nome));
-const elogiosList = document.getElementById("elogiosList");
+  // Date já convertido
+  if (data instanceof Date) {
+    return Number.isNaN(data.getTime()) ? null : data;
+  }
 
-setoresOrdenados.forEach((setor) => {
-  elogiosList.innerHTML += `
-        <h2 class="setor-title">${setor}</h2>
+  // Aceita timestamp numérico, se existir no projeto
+  if (typeof data === "number") {
+    const dataConvertida = new Date(data);
 
-        <div class="pessoas-container" id="setor-${setor}">
-        </div>
+    return Number.isNaN(dataConvertida.getTime()) ? null : dataConvertida;
+  }
+
+  return null;
+}
+
+function escaparHTML(valor) {
+  return String(valor ?? "").replace(/[&<>"']/g, (caractere) => {
+    const caracteres = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    };
+
+    return caracteres[caractere];
+  });
+}
+
+function formatarData(data) {
+  return new Intl.DateTimeFormat("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(data);
+}
+
+function formatarHorario(data) {
+  return new Intl.DateTimeFormat("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(data);
+}
+
+function formatarMes(ano, mes) {
+  // O mês no JavaScript começa em zero.
+  const data = new Date(ano, mes, 1);
+
+  const nomeMes = new Intl.DateTimeFormat("pt-BR", {
+    month: "long",
+    year: "numeric",
+  }).format(data);
+
+  return nomeMes.charAt(0).toUpperCase() + nomeMes.slice(1);
+}
+
+// NAVEGAÇÃO ENTRE MESES
+
+function alterarMes(diferenca) {
+  const novaData = new Date(anoAtual, mesAtual + diferenca, 1);
+
+  mesAtual = novaData.getMonth();
+  anoAtual = novaData.getFullYear();
+
+  renderizarElogios();
+}
+
+// RENDERIZAÇÃO
+
+function renderizarElogios() {
+  elementoMesAtual.textContent = formatarMes(anoAtual, mesAtual);
+
+  // Filtra os elogios do mês e ano selecionados.
+  const elogiosDoMes = elogios
+    .map((elogio) => ({
+      ...elogio,
+      dataConvertida: converterData(elogio.data),
+    }))
+    .filter((elogio) => {
+      if (!elogio.dataConvertida) return false;
+
+      return (
+        elogio.dataConvertida.getMonth() === mesAtual &&
+        elogio.dataConvertida.getFullYear() === anoAtual
+      );
+    })
+    // Mais recentes primeiro.
+    .sort((a, b) => b.dataConvertida.getTime() - a.dataConvertida.getTime());
+
+  elementoTotalElogios.textContent = `${elogiosDoMes.length} ${
+    elogiosDoMes.length === 1 ? "elogio" : "elogios"
+  }`;
+
+  if (elogiosDoMes.length === 0) {
+    elementoLista.innerHTML = `
+      <div class="historico-elogios__vazio">
+        <h3>Nenhum elogio neste mês</h3>
+        <p>
+          Não encontramos elogios registrados em
+          ${escaparHTML(formatarMes(anoAtual, mesAtual))}.
+        </p>
+      </div>
     `;
 
-  pessoasOrdenadas.forEach((pessoa) => {
-    const elogiosDaPessoa = elogios.filter(
-      (elogio) => elogio.pessoa === pessoa.nome && elogio.setor === setor,
-    );
-
-    const mediaEstrelas =
-      elogiosDaPessoa.length > 0
-        ? (
-            elogiosDaPessoa.reduce(
-              (total, elogio) => total + Number(elogio.estrelas),
-              0,
-            ) / elogiosDaPessoa.length
-          ).toFixed(1)
-        : "—";
-
-    if (pessoa.setor === setor) {
-      const pessoasContainer = document.getElementById(`setor-${setor}`);
-
-      pessoasContainer.innerHTML += `
-          <div class="card-pessoa">
-
-            <div class="card-pessoa__cabecalho">
-
-                <div class="card-pessoa__identificacao">
-
-                    <div class="card-pessoa__foto">
-                        <span>
-                            ${pessoa.nome
-                              .split(" ")
-                              .slice(0, 2)
-                              .map((nome) => nome[0])
-                              .join("")
-                              .toUpperCase()}
-                        </span>
-                    </div>
-
-                    <h3>${pessoa.nome}</h3>
-
-                </div>
-
-                <p class="card-pessoa__cargo">
-                    ${pessoa.cargo || "Cargo não informado"}
-                </p>
-
-            </div>
-
-            <div class="card-pessoa__linha"></div>
-
-            <div class="card-pessoa__estatisticas">
-
-                <div class="card-pessoa__estatistica">
-                    <strong>${elogiosDaPessoa.length}</strong>
-                    <span>
-                        ${elogiosDaPessoa.length === 1 ? "Elogio" : "Elogios"}
-                    </span>
-                </div>
-
-                <div class="card-pessoa__estatistica">
-                    <strong>⭐ ${mediaEstrelas}</strong>
-                    <span>Média</span>
-                </div>
-
-            </div>
-
-            <button
-                class="btn-ver-elogios"
-                data-pessoa="${pessoa.nome}"
-                data-setor="${setor}"
-            >
-                VER ELOGIOS
-            </button>
-
-        </div>
-            `;
-    }
-  });
-});
-
-const dialogElogios = document.getElementById("dialogElogios");
-const dialogTitulo = document.getElementById("dialogTitulo");
-const dialogConteudo = document.getElementById("dialogConteudo");
-const fecharDialog = document.getElementById("fecharDialog");
-
-document.addEventListener("click", (event) => {
-  if (!event.target.classList.contains("btn-ver-elogios")) {
     return;
   }
 
-  const nomePessoa = event.target.dataset.pessoa;
+  elementoLista.innerHTML = elogiosDoMes
+    .map((elogio) => {
+      const data = elogio.dataConvertida;
 
-  const elogiosDaPessoa = elogios.filter(
-    (elogio) => elogio.pessoa === nomePessoa,
-  );
+      return `
+        <article class="historico-elogio">
+          <header class="historico-elogio__cabecalho">
+            <div class="historico-elogio__data">
+              <span>${formatarData(data)}</span>
+              <span>${formatarHorario(data)}</span>
+            </div>
 
-  dialogTitulo.textContent = `Elogios de ${nomePessoa}`;
+            <div class="historico-elogio__estrelas">
+              ⭐ ${escaparHTML(elogio.estrelas)} / 5
+            </div>
+          </header>
 
-  dialogConteudo.innerHTML = "";
+          <div class="historico-elogio__conteudo">
+            <span class="historico-elogio__rotulo">
+              Elogio
+            </span>
 
-  if (elogiosDaPessoa.length === 0) {
-    dialogConteudo.innerHTML = `
-        <p class="sem-elogios">
-            Essa pessoa ainda não possui elogios.
-        </p>
-    `;
-  } else {
-    elogiosDaPessoa.forEach((elogio) => {
-      dialogConteudo.innerHTML += `
-            <article class="elogio-card">
+            <p class="historico-elogio__texto">
+              ${escaparHTML(elogio.elogio || "Nenhum texto informado.")}
+            </p>
+          </div>
 
-                <div class="elogio-card__conteudo">
+          <div class="historico-elogio__informacoes">
+            <div class="historico-elogio__informacao">
+              <span>Enviado por</span>
+              <strong>${escaparHTML(elogio.nome || "Não informado")}</strong>
+            </div>
 
-                    <span class="elogio-card__label">
-                        Elogio
-                    </span>
+            <div class="historico-elogio__informacao">
+              <span>Para</span>
+              <strong>${escaparHTML(elogio.pessoa || "Não informado")}</strong>
+            </div>
 
-                    <p class="elogio-card__texto">
-                        ${elogio.elogio}
-                    </p>
+            <div class="historico-elogio__informacao">
+              <span>Setor</span>
+              <strong>${escaparHTML(elogio.setor || "Não informado")}</strong>
+            </div>
 
-                </div>
+            <div class="historico-elogio__informacao">
+              <span>Valor</span>
+              <strong>${escaparHTML(elogio.valor || "Não informado")}</strong>
+            </div>
+          </div>
+        </article>
+      `;
+    })
+    .join("");
+}
 
-                <div class="elogio-card__informacoes">
+// EVENTOS
 
-                    <div class="elogio-card__informacao">
-                        <span>Estrelas</span>
-                        <strong>⭐ ${elogio.estrelas}</strong>
-                    </div>
-
-                    <div class="elogio-card__informacao">
-                        <span>Valor</span>
-                        <strong>${elogio.valor}</strong>
-                    </div>
-
-                    <div class="elogio-card__informacao elogio-card__informacao--remetente">
-                        <span>Enviado por</span>
-                        <strong>${elogio.nome}</strong>
-                    </div>
-
-                </div>
-
-            </article>
-        `;
-    });
-  }
-
-  dialogElogios.showModal();
+botaoMesAnterior.addEventListener("click", () => {
+  alterarMes(-1);
 });
 
-fecharDialog.addEventListener("click", () => {
-  dialogElogios.close();
+botaoProximoMes.addEventListener("click", () => {
+  alterarMes(1);
+});
+
+// INICIALIZAÇÃO
+
+async function inicializarPagina() {
+  try {
+    await carregarElogios();
+
+    elogios = obterElogios();
+
+    // Começa pelo mês do elogio mais recente.
+    const datasValidas = elogios
+      .map((elogio) => converterData(elogio.data))
+      .filter(Boolean)
+      .sort((a, b) => b.getTime() - a.getTime());
+
+    const dataInicial = datasValidas[0] || new Date();
+
+    mesAtual = dataInicial.getMonth();
+    anoAtual = dataInicial.getFullYear();
+
+    renderizarElogios();
+  } catch (erro) {
+    console.error("Erro ao carregar o histórico de elogios:", erro);
+
+    elementoMesAtual.textContent = "Histórico de elogios";
+    elementoTotalElogios.textContent = "";
+
+    elementoLista.innerHTML = `
+      <div class="historico-elogios__vazio">
+        <h3>Não foi possível carregar os elogios</h3>
+        <p>Tente atualizar a página.</p>
+      </div>
+    `;
+  }
+}
+
+inicializarPagina();
+
+const dialog = document.querySelector("#menuDialog");
+const abrirMenu = document.querySelector("#abrirMenu");
+const fecharMenu = document.querySelector("#fecharMenu");
+
+abrirMenu.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+fecharMenu.addEventListener("click", () => {
+  dialog.close();
 });

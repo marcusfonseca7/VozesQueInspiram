@@ -1,0 +1,349 @@
+/* - - - - - - - - - - - - - - - - IMPORTAÇÃO DE FONTES - - - - - - - - - - - - - - - - */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap");
+
+/* - - - - - - - - - - - - - - - - RESET - - - - - - - - - - - - - - - - */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f7f8fa;
+  color: #292929;
+}
+
+/* - - - - - - - - - - - - - - - - CONTAINER PRINCIPAL - - - - - - - - - - - - - - - - */
+
+.historico-elogios {
+  width: min(1050px, 92%);
+  margin: 0 auto;
+  padding: 36px 0 48px;
+}
+
+.historico-elogios__cabecalho {
+  margin-bottom: 28px;
+}
+
+.historico-elogios__cabecalho h1 {
+  margin-bottom: 8px;
+  color: #292929;
+  font-size: 1.65rem;
+  font-weight: 700;
+}
+
+.historico-elogios__cabecalho p {
+  color: #777;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* - - - - - - - - - - - - - - - - NAVEGAÇÃO MENSAL - - - - - - - - - - - - - - - - */
+
+.historico-elogios__navegacao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  margin-bottom: 22px;
+  background-color: #fff;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgb(0 0 0 / 3%);
+}
+
+.historico-elogios__mes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+}
+
+.historico-elogios__mes-container h2 {
+  color: #343434;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+#totalElogios {
+  color: #888;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.historico-elogios__seta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #e8e8e8;
+  border-radius: 9px;
+  background-color: #fff;
+  color: #555;
+  font-family: inherit;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.historico-elogios__seta img {
+  width: 20px;
+}
+
+.historico-elogios__seta:hover {
+  background-color: #fff0e6;
+  border-color: #f2c6a6;
+  color: #b95d24;
+  transform: translateY(-1px);
+}
+
+.historico-elogios__seta:focus-visible {
+  outline: 2px solid #c87842;
+  outline-offset: 3px;
+}
+
+/* - - - - - - - - - - - - - - - - LISTA DE ELOGIOS - - - - - - - - - - - - - - - - */
+
+.historico-elogios__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+/* - - - - - - - - - - - - - - - - CARD DE ELOGIO - - - - - - - - - - - - - - - - */
+
+.historico-elogio {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  gap: 13px;
+  width: 95%;
+  min-width: 0;
+  padding: 20px 22px;
+  background-color: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgb(0 0 0 / 3%);
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.historico-elogio:hover {
+  border-color: #e1d4ca;
+  box-shadow: 0 5px 16px rgb(0 0 0 / 5%);
+}
+
+/* - - - - - - - - - - - - - - - - CABEÇALHO DO CARD - - - - - - - - - - - - - - - - */
+
+.historico-elogio__cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.historico-elogio__data {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.historico-elogio__data span:first-child {
+  color: #454545;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.historico-elogio__data span:last-child {
+  color: #999;
+  font-size: 0.7rem;
+}
+
+.historico-elogio__estrelas {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background-color: #fff5e5;
+  border: 1px solid #f5e3bf;
+  border-radius: 7px;
+  color: #8b620e;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* - - - - - - - - - - - - - - - - TEXTO DO ELOGIO - - - - - - - - - - - - - - - - */
+
+.historico-elogio__conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.historico-elogio__rotulo {
+  width: fit-content;
+  padding: 4px 8px;
+  background-color: #fff0e6;
+  border-radius: 5px;
+  color: #a85422;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.historico-elogio__texto {
+  width: 100%;
+  color: #414141;
+  font-size: 0.84rem;
+  font-weight: 400;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+  padding: 10px;
+}
+
+/* - - - - - - - - - - - - - - - - INFORMAÇÕES DO ELOGIO - - - - - - - - - - - - - - - - */
+
+.historico-elogio__informacoes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #eeeeee;
+}
+
+.historico-elogio__informacao {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.historico-elogio__informacao span {
+  color: #929292;
+  font-size: 0.68rem;
+  font-weight: 500;
+}
+
+.historico-elogio__informacao strong {
+  color: #414141;
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* - - - - - - - - - - - - - - - - ESTADO VAZIO E MENSAGENS - - - - - - - - - - - - - - - - */
+
+.historico-elogios__estado,
+.historico-elogios__vazio {
+  padding: 32px 20px;
+  background-color: #fff;
+  border: 1px solid #ededed;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.historico-elogios__vazio h3 {
+  margin-bottom: 8px;
+  color: #414141;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.historico-elogios__vazio p,
+.historico-elogios__estado {
+  color: #858585;
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+/* - - - - - - - - - - - - - - - - RESPONSIVIDADE PARA TABLETS - - - - - - - - - - - - - - - - */
+
+@media (max-width: 800px) {
+  .historico-elogios {
+    padding-top: 28px;
+  }
+
+  .historico-elogio__informacoes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .historico-elogio {
+    padding: 18px;
+  }
+}
+
+/* - - - - - - - - - - - - - - - - RESPONSIVIDADE PARA CELULARES - - - - - - - - - - - - - - - - */
+
+@media (max-width: 480px) {
+  .historico-elogios {
+    width: 92%;
+    padding: 24px 0 32px;
+  }
+
+  .historico-elogios__cabecalho {
+    margin-bottom: 22px;
+  }
+
+  .historico-elogios__cabecalho h1 {
+    font-size: 1.35rem;
+  }
+
+  .historico-elogios__cabecalho p {
+    font-size: 0.8rem;
+  }
+
+  .historico-elogios__navegacao {
+    gap: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+
+  .historico-elogios__mes-container h2 {
+    font-size: 0.9rem;
+  }
+
+  .historico-elogios__seta {
+    width: 32px;
+    height: 32px;
+  }
+
+  .historico-elogios__lista {
+    gap: 12px;
+  }
+
+  .historico-elogio {
+    gap: 12px;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .historico-elogio__texto {
+    font-size: 0.8rem;
+    line-height: 1.7;
+  }
+
+  .historico-elogio__informacoes {
+    gap: 12px;
+  }
+
+  .historico-elogio__informacao strong {
+    font-size: 0.72rem;
+  }
+}

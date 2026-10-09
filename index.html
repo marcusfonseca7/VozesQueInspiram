@@ -31,14 +31,14 @@
 
         <form id="complimentForm">
           <label for="name" class="label__name">Nome</label>
-          
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Digite seu nome..."
-              class="input__name"
-            />
+
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Digite seu nome..."
+            class="input__name"
+          />
 
           <div class="container__selects">
             <div class="department__select">
@@ -121,16 +121,47 @@
         />
       </div>
 
-      <nav class="header__nav">
-        <ul class="header__nav-list">
-          <li class="header__nav-item">
-            <a href="#home" class="header__nav-link ativo">HOME</a>
-          </li>
-          <li class="header__nav-item">
-            <a href="elogios.html" class="header__nav-link">ELOGIOS</a>
-          </li>
-        </ul>
-      </nav>
+      <button
+        id="abrirMenu"
+        class="menu-button"
+        type="button"
+        aria-label="Abrir menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <dialog id="menuDialog" class="menu-dialog">
+        <aside class="menu-dialog__container">
+          <button
+            id="fecharMenu"
+            class="menu-dialog__close"
+            type="button"
+            aria-label="Fechar menu"
+          >
+            ×
+          </button>
+
+          <nav class="menu-dialog__nav">
+            <ul class="menu-dialog__list">
+              <li class="menu-dialog__item">
+                <a href="index.html" class="menu-dialog__link ativo"> HOME </a>
+              </li>
+
+              <li class="menu-dialog__item">
+                <a href="reconhecimento.html" class="menu-dialog__link">
+                  RECONHECIMENTO
+                </a>
+              </li>
+
+              <li class="menu-dialog__item">
+                <a href="elogios.html" class="menu-dialog__link"> ELOGIOS </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+      </dialog>
     </header>
 
     <!-- ---------------------- HERO ---------------------- -->
@@ -160,6 +191,7 @@
           class="seta-baixo"
         />
       </div>
+
     </section>
 
     <!-- ---------------------- SOBRE O PROJETO ---------------------- -->
@@ -174,9 +206,9 @@
             class="sobre-card__icon pertencer"
           />
           <p class="sobre-card__text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since 1966, when designers
+            A Rede Pertencer acredita que reconhecer boas atitudes também é uma
+            forma de fortalecer a cultura do respeito, da inclusão e do
+            pertencimento.
           </p>
         </article>
 
@@ -187,9 +219,11 @@
             class="sobre-card__icon senai"
           />
           <p class="sobre-card__text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since 1966, when designers
+            Pensando nisso, nasce o Projeto Vozes que Inspiram , uma iniciativa
+            criada para dar visibilidade aos feedbacks positivos recebidos de
+            alunos, famílias, docentes, colaboradores e da comunidade escolar
+            sobre ações que fazem a diferença no dia a dia do SENAI Vila
+            Mariana.
           </p>
           <img
             src="img/logoPertencer.png"
@@ -205,9 +239,9 @@
             class="sobre-card__icon handshake"
           />
           <p class="sobre-card__text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since 1966, when designers
+            Cada história publicada será um reconhecimento às pessoas que, por
+            meio de pequenas e grandes atitudes, contribuem para construir um
+            ambiente cada vez mais humano, acessível, respeitoso e inspirador.
           </p>
           <img
             src="img/logoPertencer.png"
@@ -217,11 +251,12 @@
         </article>
       </div>
 
-      <img
-        src="img/bonequinho.png"
-        alt="Mascote Rede Pertencer"
-        class="sobre__mascot"
-      />
+      <div class="sobre__pertencer">
+        <p>
+          Quando valorizamos quem inspira, fortalecemos uma cultura em que todos
+          se sentem pertencentes. 💙
+        </p>
+      </div>
     </section>
 
     <!-- ---------------------- FOOTER ---------------------- -->

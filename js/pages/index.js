@@ -90,3 +90,15 @@ complimentForm.addEventListener("submit", async (event) => {
     alert("Não foi possível enviar o elogio. Tente novamente.");
   }
 });
+
+const dialog = document.querySelector("#menuDialog");
+const abrirMenu = document.querySelector("#abrirMenu");
+const fecharMenu = document.querySelector("#fecharMenu");
+
+abrirMenu.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+fecharMenu.addEventListener("click", () => {
+  dialog.close();
+});

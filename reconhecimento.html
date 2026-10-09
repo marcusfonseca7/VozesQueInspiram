@@ -6,7 +6,6 @@
     <title>Vozes que Inspiram | SENAI Anchieta - Vila Mariana</title>
 
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/elogios.css" />
 
     <link rel="stylesheet" />
   </head>
@@ -56,15 +55,13 @@
               </li>
 
               <li class="menu-dialog__item">
-                <a href="reconhecimento.html" class="menu-dialog__link">
+                <a href="reconhecimento.html" class="menu-dialog__link ativo">
                   RECONHECIMENTO
                 </a>
               </li>
 
               <li class="menu-dialog__item">
-                <a href="elogios.html" class="menu-dialog__link ativo">
-                  ELOGIOS
-                </a>
+                <a href="elogios.html" class="menu-dialog__link"> ELOGIOS </a>
               </li>
             </ul>
           </nav>
@@ -72,39 +69,14 @@
       </dialog>
     </header>
 
-    <main>
-      <section
-        class="historico-elogios__navegacao"
-        aria-label="Navegação por mês"
-      >
-        <button
-          type="button"
-          id="mesAnterior"
-          class="historico-elogios__seta"
-          aria-label="Ver mês anterior"
-        >
-          <img src="img/iconSetaEsquerda.png" alt="Seta para esquerda" />
-        </button>
-        <div class="historico-elogios__mes-container">
-          <h2 id="mesAtual">Carregando...</h2>
-          <span id="totalElogios" aria-live="polite"></span>
-        </div>
-        <button
-          type="button"
-          id="proximoMes"
-          class="historico-elogios__seta"
-          aria-label="Ver próximo mês"
-        >
-          <img src="img/iconSetaDireita.png" alt="Seta para direita" />
-        </button>
-      </section>
-      <section
-        id="elogiosHistorico"
-        class="historico-elogios__lista"
-        aria-live="polite"
-      >
-        <p class="historico-elogios__estado">Carregando elogios...</p>
-      </section>
+    <main class="elogios-main">
+      <div class="elogios-container">
+        <h2 class="elogios-title">Elogios por colaborador!</h2>
+        <p class="elogios-description">
+          Veja aqui, separado por colaborador, os elogios recebidos!
+        </p>
+        <div class="elogios-list" id="elogiosList"></div>
+      </div>
     </main>
 
     <!-- ---------------------- FOOTER ---------------------- -->
@@ -135,6 +107,15 @@
         </div>
       </div>
     </footer>
-    <script type="module" src="./js/pages/elogios.js"></script>
+
+    <dialog id="dialogElogios">
+      <button id="fecharDialog" type="button">×</button>
+
+      <h2 id="dialogTitulo"></h2>
+
+      <div id="dialogConteudo"></div>
+    </dialog>
+
+    <script type="module" src="./js/pages/reconhecimento.js"></script>
   </body>
 </html>
